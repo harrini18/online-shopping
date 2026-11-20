@@ -20,7 +20,7 @@ const verifyToken = async (req, res, next) => {
 
         const token = authHeader.split(" ")[1];
 
-        const decodedToken = await getAuth().verifyIdToken(token);
+        const decodedToken = await getAuth().verifyIdToken(token, true);
 
         req.user = {
             uid: decodedToken.uid,

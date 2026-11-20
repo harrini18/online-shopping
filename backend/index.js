@@ -5,7 +5,7 @@ const { db } = require("./config/firebase");
 require("dotenv").config();
 
 const testRoutes = require("./routes/testRoutes");
-
+const productRoutes = require("./routes/productRoutes");
 // ==========================================
 // INITIALIZE FIREBASE ADMIN
 // ==========================================
@@ -25,6 +25,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/test", testRoutes);
+app.use("/api/products", productRoutes);
 
 // ==========================================
 // HEALTH CHECK

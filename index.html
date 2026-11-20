@@ -59,12 +59,25 @@
 
     </button>
 
+    <!-- LOGIN: visible when the visitor is signed out -->
+    <a href="login.html" class="account-button" id="login-link">
+        Login
+    </a>
+
+    <!-- LOGOUT: visible when the visitor is signed in -->
+    <button
+        type="button"
+        class="account-button"
+        id="logout-button"
+        hidden>
+        Logout
+    </button>
+
     <a href="cart.html" class="cart-button" id="cart-button">
         Bag <span id="cart-count">0</span>
     </a>
 
 </div>
-
         </div>
     </header>
 
@@ -84,11 +97,11 @@
                         <em>Become your character.</em>
                     </h1>
 
-                    <p>
-                        From iconic costumes to the tiniest finishing details,
-                        discover everything you need to bring your favourite
-                        characters to life.
-                    </p>
+                    <p class="hero-description">
+    From iconic costumes to the tiniest finishing details,
+    discover everything you need to bring your favourite
+    characters to life.
+</p>
 
                     <a href="#products" class="shop-button">
                         EXPLORE THE COLLECTION →
@@ -144,7 +157,7 @@
                         data-category="Costumes">
 
                         <img
-                            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700"
+                            src="https://preview.redd.it/we-want-your-ideas-and-suggestions-how-about-this-costume-v0-p2y9zs0ugxlf1.jpg?width=640&crop=smart&auto=webp&s=ad58615a3450e3f3e63b80342c14f3f76beaec87"
                             alt="Costume inspiration">
 
                         <span class="category-overlay"></span>
@@ -161,7 +174,7 @@
                         data-category="Wigs">
 
                         <img
-                            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_J1u3HEU21sAKR0cgZodBSWjPLwTbb25nG0PPODw8Ktyy-kpLZJMPF3FD&s=10"
                             alt="Wig and hairstyle inspiration">
 
                         <span class="category-overlay"></span>
@@ -178,7 +191,7 @@
                         data-category="Shoes">
 
                         <img
-                            src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700"
+                            src="https://canary.contestimg.wish.com/api/webimage/5f17fd58f723476145f4a8cf-large.jpg?cache_buster=70127037c3a958258ba5d342e79c3f34"
                             alt="Cosplay footwear inspiration">
 
                         <span class="category-overlay"></span>
@@ -195,7 +208,7 @@
                         data-category="Accessories">
 
                         <img
-                            src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=700"
+                            src="https://www.threefleas.com/cdn/shop/files/AnimeEgyptianJewelrySet6.jpg?v=1726046016&width=1445"
                             alt="Cosplay jewellery and accessories">
 
                         <span class="category-overlay"></span>
@@ -212,7 +225,7 @@
                         data-category="Props">
 
                         <img
-                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700"
+                            src="https://i.redd.it/9ud7x8wdrawa1.jpg"
                             alt="Fantasy prop inspiration">
 
                         <span class="category-overlay"></span>
@@ -229,7 +242,7 @@
                         data-category="Makeup">
 
                         <img
-                            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700"
+                            src="https://preview.redd.it/finally-all-the-makeup-i-got-as-my-bridal-collection-has-v0-kmeeydu1zm3c1.jpeg?auto=webp&s=68df165ad70895b587c7c1428fa9221343a69549"
                             alt="Makeup products">
 
                         <span class="category-overlay"></span>
@@ -246,7 +259,7 @@
                         data-category="DIY Supplies">
 
                         <img
-                            src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=700"
+                            src="https://m.media-amazon.com/images/I/81fGSIm7Y5L.jpg"
                             alt="Creative DIY supplies">
 
                         <span class="category-overlay"></span>
@@ -263,7 +276,7 @@
                         data-category="Collectibles">
 
                         <img
-                            src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?w=700"
+                            src="https://i.redd.it/zi3l89q72o9e1.jpg"
                             alt="Collectible figures">
 
                         <span class="category-overlay"></span>
@@ -669,6 +682,6 @@
             }
         }
     </style>
-
+<script type="module" src="js/header-auth.js"></script>
 </body>
 </html>

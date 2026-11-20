@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Sign in to your account at The Dressup Society.">
+
+    <title>Login | THE DRESSUP SOCIETY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        YOUR NEXT CHARACTER IS WAITING. FIND YOUR LOOK.
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="index.html" class="logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#products">Shop</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="theme-toggle"
+                    aria-label="Switch to dark mode"
+                    title="Switch theme">
+
+                    <span id="theme-icon">☾</span>
+
+                </button>
+
+                <a href="cart.html" class="cart-button">
+                    Bag
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- LOGIN SECTION -->
+    <main class="auth-main">
+
+        <div class="auth-container">
+
+            <p class="eyebrow">WELCOME BACK TO YOUR UNIVERSE</p>
+
+            <h1>
+                Welcome <em>back.</em>
+            </h1>
+
+            <p class="auth-subtitle">
+                Sign in and continue your cosplay journey.
+            </p>
+
+            <!-- EMAIL LOGIN -->
+            <form id="login-form">
+
+                <div class="auth-field">
+
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                </div>
+
+                <button type="submit" class="auth-submit">
+                    SIGN IN →
+                </button>
+
+            </form>
+
+            <!-- DIVIDER -->
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+
+            <!-- GOOGLE LOGIN -->
+            <button
+                type="button"
+                id="google-login"
+                class="google-login">
+
+                Continue with Google
+
+            </button>
+
+            <!-- AUTHENTICATION MESSAGE -->
+            <p id="auth-message" class="auth-message"
+                aria-live="polite"></p>
+
+            <!-- LINKS -->
+            <div class="auth-links">
+
+                <p>
+                    Don't have an account?
+                    <a href="register.html">Create an account</a>
+                </p>
+
+                <a href="index.html" class="back-to-shop">
+                    ← Back to Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="index.html" class="logo footer-logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <p>
+                FIND YOUR LOOK. BECOME YOUR CHARACTER.
+            </p>
+
+            <p>
+                © 2026 THE DRESSUP SOCIETY. ALL RIGHTS RESERVED.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- THEME AND LOGIN SCRIPTS -->
+    <script type="module" src="js/auth-theme.js"></script>
+    <script type="module" src="js/login.js"></script>
+
+</body>
+</html>

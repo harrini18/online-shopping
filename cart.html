@@ -10,35 +10,46 @@
     <title>Your Shopping Bag | THE CHERRY LABEL</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/cart.js" defer></script>
+    <script type="module" src="js/cart-auth.js"></script>
 </head>
 
 <body>
 
-    <div class="announcement">
-        A LITTLE MORE BEAUTIFUL, EVERY DAY.
-    </div>
-
+<div class="announcement">
+    A LITTLE MORE BEAUTIFUL, EVERY DAY.
+</div>   
     <header class="header">
-        <div class="container nav">
+    <div class="container nav">
 
-            <a href="index.html" class="logo">
-                <span>THE CHERRY</span>
-                <small>LABEL</small>
-            </a>
+        <a href="index.html" class="logo">
+            <span>THE CHERRY</span>
+            <small>LABEL</small>
+        </a>
 
-            <nav aria-label="Main navigation">
-                <a href="index.html">Home</a>
-                <a href="index.html#categories">Collections</a>
-                <a href="index.html#products">Shop</a>
-            </nav>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="index.html#categories">Collections</a>
+            <a href="index.html#products">Shop</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button type="button" class="theme-toggle"
+                id="theme-toggle"
+                aria-label="Switch to dark mode"
+                title="Switch theme">
+                <span id="theme-icon">☾</span>
+            </button>
 
             <a href="cart.html" class="cart-button">
                 Bag <span id="cart-count">0</span>
             </a>
 
         </div>
-    </header>
+
+    </div>
+</header>
+
 
     <main class="cart-page container">
 
@@ -102,6 +113,9 @@
             <p>© 2026 THE CHERRY LABEL. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
+        <!-- SHOPPING BAG FUNCTIONALITY -->
+    <script src="js/cart.js"></script>
+    <script type="module" src="js/auth-theme.js"></script>
 
 </body>
 </html>

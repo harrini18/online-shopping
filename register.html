@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Create your account at The Dressup Society.">
+
+    <title>Create Account | THE DRESSUP SOCIETY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        YOUR NEXT CHARACTER IS WAITING. FIND YOUR LOOK.
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="index.html" class="logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#products">Shop</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="theme-toggle"
+                    aria-label="Switch to dark mode"
+                    title="Switch theme">
+
+                    <span id="theme-icon">☾</span>
+
+                </button>
+
+                <a href="cart.html" class="cart-button">
+                    Bag
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- REGISTRATION SECTION -->
+    <main class="auth-main">
+
+        <div class="auth-container">
+
+            <p class="eyebrow">YOUR COSPLAY JOURNEY BEGINS HERE</p>
+
+            <h1>
+                Create your <em>account.</em>
+            </h1>
+
+            <p class="auth-subtitle">
+                Join our universe and discover your next character.
+            </p>
+
+            <!-- REGISTRATION FORM -->
+            <form id="register-form">
+
+                <div class="auth-field">
+
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label for="phone">Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        autocomplete="tel"
+                        required>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password (minimum 6 characters)"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required>
+
+                </div>
+
+                <button type="submit" class="auth-submit">
+                    CREATE ACCOUNT →
+                </button>
+
+            </form>
+
+            <!-- AUTHENTICATION MESSAGE -->
+            <p id="auth-message" class="auth-message"
+                aria-live="polite"></p>
+
+            <!-- LINKS -->
+            <div class="auth-links">
+
+                <p>
+                    Already have an account?
+                    <a href="login.html">Login</a>
+                </p>
+
+                <a href="index.html" class="back-to-shop">
+                    ← Back to Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="index.html" class="logo footer-logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <p>
+                FIND YOUR LOOK. BECOME YOUR CHARACTER.
+            </p>
+
+            <p>
+                © 2026 THE DRESSUP SOCIETY. ALL RIGHTS RESERVED.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- THEME AND REGISTRATION SCRIPTS -->
+    <script type="module" src="js/auth-theme.js"></script>
+    <script type="module" src="js/register.js"></script>
+
+</body>
+</html>

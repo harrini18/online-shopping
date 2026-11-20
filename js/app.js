@@ -105,6 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const categoryCards = document.querySelectorAll(".category-card");
     const fandomCards = document.querySelectorAll("[data-fandom]");
 
+    // Theme elements
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+
 
     // ==========================================
     // SHOPPING STATE
@@ -129,6 +133,98 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     } catch (error) {
         cart = [];
+    }
+
+
+    // ==========================================
+    // THEME SWITCHER
+    // ==========================================
+
+    const THEME_STORAGE_KEY = "dressupTheme";
+
+    function applyTheme(theme) {
+
+        const selectedTheme = theme === "dark" ? "dark" : "light";
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            selectedTheme
+        );
+
+        if (themeIcon) {
+            themeIcon.textContent =
+                selectedTheme === "dark" ? "☀" : "☾";
+        }
+
+        if (themeToggle) {
+
+            const nextTheme =
+                selectedTheme === "dark" ? "light" : "dark";
+
+            const label =
+                nextTheme === "dark"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode";
+
+            themeToggle.setAttribute("aria-label", label);
+            themeToggle.setAttribute("title", label);
+        }
+    }
+
+
+    // Check whether the visitor has already selected a theme.
+
+    let savedTheme = null;
+
+    try {
+        savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+        savedTheme = null;
+    }
+
+
+    // Use the computer's theme preference on the first visit.
+
+    const systemPrefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const initialTheme =
+        savedTheme === "dark" || savedTheme === "light"
+            ? savedTheme
+            : systemPrefersDark
+                ? "dark"
+                : "light";
+
+
+    // Apply the initial theme.
+
+    applyTheme(initialTheme);
+
+
+    // Switch themes when the visitor clicks the button.
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener("click", () => {
+
+            const currentTheme =
+                document.documentElement.getAttribute("data-theme");
+
+            const nextTheme =
+                currentTheme === "dark" ? "light" : "dark";
+
+            applyTheme(nextTheme);
+
+            try {
+                localStorage.setItem(
+                    THEME_STORAGE_KEY,
+                    nextTheme
+                );
+            } catch (error) {
+                console.warn("Theme preference could not be saved.");
+            }
+        });
     }
 
 

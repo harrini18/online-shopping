@@ -1488,3 +1488,346 @@ img {
         font-size: 21px;
     }
 }
+
+
+
+/* =========================================
+   THE DRESSUP SOCIETY
+   LIGHT & DARK THEME
+========================================= */
+
+/* THEME COLOUR VARIABLES */
+
+:root {
+    --surface: #ffffff;
+    --surface-alt: #fcf8f5;
+    --input-bg: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.96);
+    --theme-shadow: rgba(50, 28, 39, 0.08);
+}
+
+/* DARK THEME COLOURS */
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --paper: #171216;
+    --ink: #f3e8eb;
+    --muted: #b6a5aa;
+    --border: #49323b;
+
+    --dark: #100c10;
+    --soft-pink: #261b22;
+    --blush: #38232c;
+
+    --surface: #21181e;
+    --surface-alt: #2b2027;
+    --input-bg: #21181e;
+    --header-bg: rgba(23, 18, 22, 0.96);
+
+    --theme-shadow: rgba(0, 0, 0, 0.25);
+}
+
+/* SMOOTH THEME TRANSITIONS */
+
+body,
+.header,
+.announcement,
+.categories-section,
+.featured-section,
+.fandom-section,
+.products-section,
+.brand-message,
+.footer,
+.product-card,
+.featured-card,
+.search-box input,
+.filter-box select,
+.pagination button,
+.cart-button,
+.category-card {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        border-color 250ms ease,
+        box-shadow 250ms ease;
+}
+
+/* THEME TOGGLE BUTTON */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--surface);
+    color: var(--ink);
+
+    font-family: var(--body-font);
+    font-size: 21px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        border-color 250ms ease,
+        transform 250ms ease;
+}
+
+.theme-toggle:hover {
+    background: var(--blush);
+    border-color: var(--rose);
+    transform: rotate(15deg);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--rose);
+    outline-offset: 4px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* DARK THEME HEADER */
+
+html[data-theme="dark"] .header {
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
+}
+
+html[data-theme="dark"] .header nav a {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .header nav a:hover {
+    color: var(--rose);
+}
+
+/* DARK THEME ANNOUNCEMENT */
+
+html[data-theme="dark"] .announcement {
+    background: #2b1721;
+    color: #f3e8eb;
+}
+
+/* DARK THEME PAGE BACKGROUNDS */
+
+html[data-theme="dark"] body {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .categories-section,
+html[data-theme="dark"] .products-section {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .featured-section,
+html[data-theme="dark"] .fandom-section {
+    background: var(--surface-alt);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .intro-strip {
+    background: #2b1721;
+    color: #f3e8eb;
+}
+
+html[data-theme="dark"] .brand-message {
+    background: #2b1721;
+    color: #f3e8eb;
+}
+
+html[data-theme="dark"] .footer {
+    background: #100c10;
+    color: #f3e8eb;
+}
+
+/* DARK THEME TEXT */
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] p {
+    color: inherit;
+}
+
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .hero-text h1 {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .section-heading > p:not(.eyebrow),
+html[data-theme="dark"] .hero-text > p:not(.eyebrow) {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .eyebrow {
+    color: var(--rose);
+}
+
+/* DARK THEME PRODUCT CARDS */
+
+html[data-theme="dark"] .product-card,
+html[data-theme="dark"] .featured-card {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--border);
+    box-shadow: 0 8px 24px var(--theme-shadow);
+}
+
+html[data-theme="dark"] .product-card h3,
+html[data-theme="dark"] .featured-card h3 {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .product-card p,
+html[data-theme="dark"] .featured-card p {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .product-card .price,
+html[data-theme="dark"] .featured-card .price {
+    color: var(--rose);
+}
+
+/* DARK THEME SEARCH */
+
+html[data-theme="dark"] .search-box input,
+html[data-theme="dark"] .filter-box select {
+    background: var(--input-bg);
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .search-box input::placeholder {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .filter-box label {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .shop-controls {
+    color: var(--ink);
+}
+
+/* DARK THEME PAGINATION */
+
+html[data-theme="dark"] .pagination button {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .pagination button:hover,
+html[data-theme="dark"] .pagination button.active {
+    background: var(--cherry);
+    color: #ffffff;
+    border-color: var(--cherry);
+}
+
+/* DARK THEME CART BUTTON */
+
+html[data-theme="dark"] .cart-button {
+    background: var(--cherry);
+    color: #ffffff;
+}
+
+/* DARK THEME FEATURED CAROUSEL */
+
+html[data-theme="dark"] .featured-arrow {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .featured-arrow:hover {
+    background: var(--cherry);
+    color: #ffffff;
+}
+
+/* DARK THEME CATEGORY CARDS */
+
+html[data-theme="dark"] .category-card {
+    border-color: var(--border);
+}
+
+/* DARK THEME EMPTY STATES */
+
+html[data-theme="dark"] .empty-cart,
+html[data-theme="dark"] .empty-state {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+/* DARK THEME LINKS */
+
+html[data-theme="dark"] .footer a {
+    color: #f3e8eb;
+}
+
+html[data-theme="dark"] .footer a:hover {
+    color: var(--rose);
+}
+
+/* MOBILE THEME TOGGLE */
+
+@media (max-width: 650px) {
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
+/* REDUCE MOTION WHEN REQUESTED */
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   DARK THEME - LOGO VISIBILITY
+========================================= */
+
+html[data-theme="dark"] .logo span {
+    color: #fff0f2 !important;
+}
+
+html[data-theme="dark"] .logo small {
+    color: #e8a0ae !important;
+}
+
+html[data-theme="dark"] .logo:hover span {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .logo:hover small {
+    color: #f2bdc7 !important;
+}

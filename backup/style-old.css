@@ -1,0 +1,156 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: Arial, sans-serif;
+    color: #202124;
+    background: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin-inline: auto;
+}
+
+.header {
+    border-bottom: 1px solid #eeeeee;
+    background: #ffffff;
+}
+
+.nav {
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a,
+.login-link {
+    color: #444444;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    color: #666666;
+    max-width: 470px;
+    margin-bottom: 28px;
+}
+
+.shop-button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.products-section,
+.categories-section {
+    padding-block: 55px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.loading-message {
+    color: #777777;
+}
+
+.category-list {
+    padding-top: 15px;
+    color: #666666;
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 25px 0;
+    background: #f7f8fa;
+    text-align: center;
+    color: #777777;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    .nav {
+        flex-wrap: wrap;
+        padding-block: 15px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .hero {
+        min-height: 350px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}

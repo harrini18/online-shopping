@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Discover cosplay costumes, wigs, shoes, accessories and collectibles at The Dressup Society.">
+
+    <title>THE DRESSUP SOCIETY | Find Your Character</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        YOUR NEXT CHARACTER IS WAITING. FIND YOUR LOOK.
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav">
+
+            <a href="index.html" class="logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <nav aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#featured">Featured</a>
+                <a href="#products">Shop</a>
+            </nav>
+
+            <a href="cart.html" class="cart-button" id="cart-button">
+                Bag <span id="cart-count">0</span>
+            </a>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <p class="eyebrow">WELCOME TO YOUR COSPLAY UNIVERSE</p>
+
+                    <h1>
+                        Find your look.
+                        <em>Become your character.</em>
+                    </h1>
+
+                    <p>
+                        From iconic costumes to the tiniest finishing details,
+                        discover everything you need to bring your favourite
+                        characters to life.
+                    </p>
+
+                    <a href="#products" class="shop-button">
+                        EXPLORE THE COLLECTION →
+                    </a>
+
+                </div>
+
+                <div class="hero-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1200"
+                        alt="Cosplay convention and creative costume atmosphere">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- INTRO STRIP -->
+        <section class="intro-strip">
+
+            <div class="container">
+
+                <p>
+                    COSPLAY • FANDOM • CREATIVITY • YOUR WORLD • YOUR CHARACTER
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- SHOP BY CATEGORY -->
+        <section class="categories-section" id="categories">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">EXPLORE YOUR STYLE</p>
+
+                    <h2>Shop by <em>category.</em></h2>
+
+                    <p>
+                        Everything you need to complete your next character look.
+                    </p>
+
+                </div>
+
+                <div class="category-grid">
+
+                    <button class="category-card" type="button"
+                        data-category="Costumes">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700"
+                            alt="Costume inspiration">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>01</small>
+                            <h3>Costumes</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Wigs">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700"
+                            alt="Wig and hairstyle inspiration">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>02</small>
+                            <h3>Wigs</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Shoes">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700"
+                            alt="Cosplay footwear inspiration">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>03</small>
+                            <h3>Shoes</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Accessories">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=700"
+                            alt="Cosplay jewellery and accessories">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>04</small>
+                            <h3>Accessories</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Props">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700"
+                            alt="Fantasy prop inspiration">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>05</small>
+                            <h3>Props</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Makeup">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700"
+                            alt="Makeup products">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>06</small>
+                            <h3>Makeup</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="DIY Supplies">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=700"
+                            alt="Creative DIY supplies">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>07</small>
+                            <h3>DIY Supplies</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                    <button class="category-card" type="button"
+                        data-category="Collectibles">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?w=700"
+                            alt="Collectible figures">
+
+                        <span class="category-overlay"></span>
+
+                        <span class="category-content">
+                            <small>08</small>
+                            <h3>Collectibles</h3>
+                            <span>EXPLORE →</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="featured-section" id="featured">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">HANDPICKED FOR YOU</p>
+
+                    <h2>Worth a <em>look.</em></h2>
+
+                    <p>
+                        A few favourites from our cosplay universe.
+                    </p>
+
+                </div>
+
+                <div class="featured-carousel">
+
+                    <button
+                        type="button"
+                        class="featured-arrow"
+                        id="featured-prev"
+                        aria-label="Previous featured product">
+                        ←
+                    </button>
+
+                    <div class="featured-track" id="featured-track">
+                        <p>Loading featured products...</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="featured-arrow"
+                        id="featured-next"
+                        aria-label="Next featured product">
+                        →
+                    </button>
+
+                </div>
+
+                <div class="carousel-indicators" id="carousel-indicators"></div>
+
+            </div>
+
+        </section>
+
+        <!-- SHOP BY FANDOM -->
+        <section class="fandom-section" id="fandom">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">WHAT'S YOUR UNIVERSE?</p>
+
+                    <h2>Shop by <em>fandom.</em></h2>
+
+                    <p>
+                        Explore collections inspired by the worlds and
+                        characters you love.
+                    </p>
+
+                </div>
+
+                <div class="fandom-grid">
+
+                    <!-- ANIME -->
+                    <button
+                        type="button"
+                        class="fandom-card"
+                        data-fandom="Anime"
+                        aria-label="Explore anime products">
+
+                        <img
+                            src="https://i.redd.it/dghj8ec6ry281.jpg"
+                            alt="Colourful anime character artwork"
+                            loading="lazy">
+
+                        <span class="fandom-overlay"></span>
+
+                        <span class="fandom-content">
+                            <small>JAPANESE ANIMATION</small>
+                            <strong>ANIME</strong>
+                            <span>EXPLORE COLLECTION →</span>
+                        </span>
+
+                    </button>
+
+                    <!-- MANGA -->
+                    <button
+                        type="button"
+                        class="fandom-card"
+                        data-fandom="Manga"
+                        aria-label="Explore manga products">
+
+                        <img
+                            src="https://cdn.britannica.com/25/258125-050-C0517C70/cosplayers-World-Cosplay-Summit-Japan.jpg"
+                            alt="Black-and-white manga illustration"
+                            loading="lazy">
+
+                        <span class="fandom-overlay"></span>
+
+                        <span class="fandom-content">
+                            <small>ILLUSTRATED WORLDS</small>
+                            <strong>MANGA</strong>
+                            <span>EXPLORE COLLECTION →</span>
+                        </span>
+
+                    </button>
+
+                    <!-- GAMES -->
+                    <button
+                        type="button"
+                        class="fandom-card"
+                        data-fandom="Games"
+                        aria-label="Explore gaming products">
+
+                        <img
+                            src="https://torneiodejogos.com.br/geeknatela/assets/images/cosplay-1-1280x720.jpg"
+                            alt="Fantasy gaming character group cosplay"
+                            loading="lazy">
+
+                        <span class="fandom-overlay"></span>
+
+                        <span class="fandom-content">
+                            <small>ENTER ANOTHER WORLD</small>
+                            <strong>GAMES</strong>
+                            <span>EXPLORE COLLECTION →</span>
+                        </span>
+
+                    </button>
+
+                    <!-- MOVIES AND COMICS -->
+                    <button
+                        type="button"
+                        class="fandom-card"
+                        data-fandom="Movies"
+                        aria-label="Explore movies and comics products">
+
+                        <img
+                            src="https://boutique-spiderman.fr/cdn/shop/articles/bec922eeff9ef910f13f0e648756449a_82a4e16d-65a1-4973-9275-2c3421a4a920.jpg?v=1771403764&width=1920"
+                            alt="Marvel and DC superheroes group illustration"
+                            loading="lazy">
+
+                        <span class="fandom-overlay"></span>
+
+                        <span class="fandom-content">
+                            <small>FROM SCREEN TO REALITY</small>
+                            <strong>MOVIES &amp; COMICS</strong>
+                            <span>EXPLORE COLLECTION →</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PRODUCT SHOP -->
+        <section class="products-section" id="products">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">YOUR NEXT LOOK STARTS HERE</p>
+
+                    <h2>Explore the <em>collection.</em></h2>
+
+                    <p>
+                        Find the pieces that bring your favourite characters
+                        to life.
+                    </p>
+
+                </div>
+
+                <!-- SEARCH AND FILTERS -->
+                <div class="shop-controls">
+
+                    <div class="search-box">
+
+                        <input
+                            type="search"
+                            id="product-search"
+                            placeholder="Search costumes, wigs, accessories..."
+                            aria-label="Search products">
+
+                        <button type="button" id="search-button">
+                            SEARCH
+                        </button>
+
+                    </div>
+
+                    <div class="filter-box">
+
+                        <label for="category-filter">
+                            SHOP CATEGORY
+                        </label>
+
+                        <select id="category-filter">
+
+                            <option value="All">All Categories</option>
+                            <option value="Costumes">Costumes</option>
+                            <option value="Wigs">Wigs</option>
+                            <option value="Shoes">Shoes</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Props">Props</option>
+                            <option value="Makeup">Makeup</option>
+                            <option value="DIY Supplies">DIY Supplies</option>
+                            <option value="Collectibles">Collectibles</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- PRODUCTS ARE DISPLAYED HERE -->
+                <div class="product-grid" id="product-list">
+                    <p>Loading products...</p>
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="pagination" id="pagination"></div>
+
+            </div>
+
+        </section>
+
+        <!-- BRAND MESSAGE -->
+        <section class="brand-message">
+
+            <div class="container">
+
+                <p class="eyebrow">THIS IS YOUR WORLD</p>
+
+                <h2>
+                    Dress up. Show up.
+                    <em>Be whoever you want.</em>
+                </h2>
+
+                <p>
+                    Your imagination has no dress code.
+                </p>
+
+                <a href="#products" class="shop-button">
+                    FIND YOUR NEXT LOOK →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="index.html" class="logo footer-logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <p>
+                FIND YOUR LOOK. BECOME YOUR CHARACTER.
+            </p>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#fandom">Fandoms</a>
+                <a href="#products">Shop</a>
+            </div>
+
+            <p>
+                © 2026 THE DRESSUP SOCIETY. ALL RIGHTS RESERVED.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- FANDOM CARD IMAGE STYLING -->
+    <style>
+        .fandom-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .fandom-card {
+            position: relative;
+            display: block;
+            width: 100%;
+            min-height: 320px;
+            padding: 0;
+            overflow: hidden;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            color: #fff;
+            background: #321c27;
+            isolation: isolate;
+        }
+
+        .fandom-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 650ms ease;
+            z-index: -2;
+        }
+
+        .fandom-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                0deg,
+                rgba(28, 13, 20, 0.88),
+                rgba(28, 13, 20, 0.05) 85%
+            );
+            z-index: -1;
+        }
+
+        .fandom-content {
+            position: absolute;
+            left: 28px;
+            right: 20px;
+            bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .fandom-content small {
+            font-family: "DM Sans", sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .fandom-content strong {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(27px, 4vw, 42px);
+            line-height: 1.1;
+        }
+
+        .fandom-content > span {
+            font-family: "DM Sans", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .fandom-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .fandom-card:focus-visible {
+            outline: 3px solid #d98291;
+            outline-offset: 4px;
+        }
+
+        .fandom-card.active {
+            outline: 3px solid #d98291;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 650px) {
+            .fandom-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .fandom-card {
+                min-height: 260px;
+            }
+        }
+    </style>
+
+</body>
+</html>

@@ -1,89 +1,21 @@
 
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
 
     // ==========================================
-    // THE DRESSUP SOCIETY - COSPLAY PRODUCTS
+    // THE DRESSUP SOCIETY - FIRESTORE PRODUCTS
     // ==========================================
 
-    const products = [
-        {
-            id: 1,
-            name: "Raiden Shogun Costume Set",
-            description: "Purple character costume with matching wig and footwear.",
-            price: 2499,
-            category: "Costumes",
-            fandom: "Games",
-            image: "https://down-ph.img.susercontent.com/file/ph-11134207-7r992-lld6vmmom20z4d",
-            featured: true
-        },
-        {
-            id: 2,
-            name: "Pink Twin-Tail Cosplay Wig",
-            description: "Long pastel-pink wig with styled twin tails and bangs.",
-            price: 1299,
-            category: "Wigs",
-            fandom: "Anime",
-            image: "https://cossky.com/cdn/shop/products/1068c6e1d5d778b772db58f44bfbe67f_1600x.jpg?v=1685009764",
-            featured: true
-        },
-        {
-            id: 3,
-            name: "Tifa Inspired Cosplay Boots",
-            description: "Red lace-up boots with black detailing.",
-            price: 2199,
-            category: "Shoes",
-            fandom: "Games",
-            image: "https://skycosplay.de/cdn/shop/files/40A347.png?v=1703044362",
-            featured: true
-        },
-        {
-            id: 4,
-            name: "Floral Cosplay Hair Clips",
-            description: "Decorative embroidered flowers with gold-tone leaves.",
-            price: 499,
-            category: "Accessories",
-            fandom: "Anime",
-            image: "https://5ggen.jp/upload/53/0307f0c22da80fb26b493fd7324d88.jpg"
-        },
-        {
-            id: 5,
-            name: "Fantasy Staff and Sword Props",
-            description: "Decorative staff and sword pieces for fantasy cosplay.",
-            price: 1899,
-            category: "Props",
-            fandom: "Games",
-            image: "https://cosplaysparks.com/cdn/shop/files/CasterMerlinStaffCosplayBuy.jpg?v=1756983495&width=1445"
-        },
-        {
-            id: 6,
-            name: "Theatrical Makeup Kit",
-            description: "Face and stage makeup colours with brushes and applicators.",
-            price: 899,
-            category: "Makeup",
-            fandom: "Movies",
-            image: "https://www.treasurehouseofmakeup.co.uk/media/catalog/product/cache/c8c5004cc32a48c8cae8987b42140eb6/t/h/theatrical-cake-kit_3.jpg"
-        },
-        {
-            id: 7,
-            name: "Cosplay DIY Craft Kit",
-            description: "Foam, adhesives and tools for creating costume props.",
-            price: 799,
-            category: "DIY Supplies",
-            fandom: "Manga",
-            image: "https://m.media-amazon.com/images/I/819YY1V3xlL._AC_SL1500_.jpg"
-        },
-        {
-            id: 8,
-            name: "Tanjiro Anime Collectible",
-            description: "Character display figure inspired by Demon Slayer.",
-            price: 1599,
-            category: "Collectibles",
-            fandom: "Anime",
-            image: "https://collectiblepilot.com/assets/images/products/aniplex-demon-slayer-tanjiro-figure/aniplex-demon-slayer-tanjiro-figure-3.webp"
-        }
-    ];
+    let products = [];
+    let featuredProducts = [];
 
 
     // ==========================================
@@ -471,12 +403,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // FEATURED PRODUCT CAROUSEL
     // ==========================================
 
-    const featuredProducts = products.filter(product => product.featured);
-
-
     function displayFeatured() {
 
-        if (!featuredTrack || featuredProducts.length === 0) return;
+        if (!featuredTrack) return;
+
+        if (featuredProducts.length === 0) {
+
+            featuredTrack.innerHTML = "";
+
+            if (carouselIndicators) {
+                carouselIndicators.innerHTML = "";
+            }
+
+            return;
+        }
 
         const product = featuredProducts[featuredIndex];
 
@@ -537,15 +477,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function changeFeatured(direction) {
 
-        featuredIndex += direction;
+        if (featuredProducts.length === 0) return;
 
-        if (featuredIndex >= featuredProducts.length) {
-            featuredIndex = 0;
-        }
-
-        if (featuredIndex < 0) {
-            featuredIndex = featuredProducts.length - 1;
-        }
+        featuredIndex =
+            (featuredIndex + direction + featuredProducts.length) %
+            featuredProducts.length;
 
         displayFeatured();
     }
@@ -586,13 +522,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clearInterval(carouselTimer);
 
+        if (featuredProducts.length <= 1) return;
+
         carouselTimer = setInterval(() => {
             changeFeatured(1);
         }, 5000);
     }
 
-
-    startCarousel();
 
     const featuredSection = document.getElementById("featured");
 
@@ -628,7 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             displayProducts();
 
-            document.getElementById("products").scrollIntoView({
+            document.getElementById("products")?.scrollIntoView({
                 behavior: "smooth"
             });
         });
@@ -671,7 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             displayProducts();
 
-            document.getElementById("products").scrollIntoView({
+            document.getElementById("products")?.scrollIntoView({
                 behavior: "smooth"
             });
         });
@@ -736,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             displayProducts();
 
-            document.getElementById("products").scrollIntoView({
+            document.getElementById("products")?.scrollIntoView({
                 behavior: "smooth"
             });
         }
@@ -767,14 +703,99 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
+    // LOAD PRODUCTS FROM FIRESTORE
+    // ==========================================
+
+    const productsCollection = collection(db, "products");
+
+    onSnapshot(
+        productsCollection,
+
+        snapshot => {
+
+            products = snapshot.docs.map(documentSnapshot => {
+
+                const data = documentSnapshot.data();
+
+                return {
+                    ...data,
+
+                    id: Number(
+                        data.id ?? documentSnapshot.id.replace("PROD", "")
+                    ),
+
+                    name: data.name || "",
+                    description: data.description || "",
+                    price: Number(data.price) || 0,
+                    category: data.category || "",
+                    fandom: data.fandom || "",
+                    image: data.image || "",
+                    featured: data.featured === true
+                };
+
+            }).sort((a, b) => a.id - b.id);
+
+
+            // Update the featured products.
+
+            featuredProducts = products.filter(
+                product => product.featured
+            );
+
+
+            // Keep the carousel index valid after updates.
+
+            if (featuredIndex >= featuredProducts.length) {
+                featuredIndex = 0;
+            }
+
+
+            // Display the latest Firestore products.
+
+            displayProducts();
+            displayFeatured();
+
+            startCarousel();
+
+
+            console.log(
+                `Successfully loaded ${products.length} products from Firestore.`
+            );
+        },
+
+        error => {
+
+            console.error(
+                "Error loading products from Firestore:",
+                error
+            );
+
+            if (productList) {
+
+                productList.innerHTML = `
+                    <div class="no-products">
+                        <h3>Unable to load products.</h3>
+                        <p>Please refresh the page or try again later.</p>
+                    </div>
+                `;
+            }
+
+            if (featuredTrack) {
+                featuredTrack.innerHTML = "";
+            }
+
+            if (pagination) {
+                pagination.innerHTML = "";
+            }
+        }
+    );
+
+
+    // ==========================================
     // INITIALIZE WEBSITE
     // ==========================================
 
     updateCartCount();
-
-    displayProducts();
-
-    displayFeatured();
 
     console.log("THE DRESSUP SOCIETY is ready!");
 

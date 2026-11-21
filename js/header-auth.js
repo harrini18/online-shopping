@@ -3,41 +3,101 @@ import { auth } from "./firebase.js";
 
 import {
     onAuthStateChanged,
-    signOut
+    signOut,
+    getIdTokenResult
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+// ==========================================
+// THE DRESSUP SOCIETY - HEADER AUTHENTICATION
+// ==========================================
 
 // Homepage account controls
 const loginLink = document.getElementById("login-link");
 const logoutButton = document.getElementById("logout-button");
+const adminLink = document.getElementById("admin-link");
 
-// Check whether the visitor is signed in
-onAuthStateChanged(auth, (user) => {
+// Hide administration until Firebase verifies the role
+if (adminLink) {
+    adminLink.hidden = true;
+}
+
+// ==========================================
+// CHECK LOGIN STATUS AND USER ROLE
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
+
+    // Reset administration visibility
+    if (adminLink) {
+        adminLink.hidden = true;
+    }
 
     if (user) {
 
-        // Visitor is signed in
+        // User is signed in
         if (loginLink) {
             loginLink.hidden = true;
         }
 
         if (logoutButton) {
             logoutButton.hidden = false;
+            logoutButton.disabled = false;
+            logoutButton.textContent = "Logout";
+        }
+
+        try {
+
+            // Get Firebase authentication claims
+            const tokenResult = await getIdTokenResult(user);
+
+            // Check whether this user is an administrator
+            const isAdmin = tokenResult.claims.admin === true;
+
+            if (adminLink) {
+                adminLink.hidden = !isAdmin;
+            }
+
+            console.log(
+                isAdmin
+                    ? "Administrator authenticated."
+                    : "Customer authenticated."
+            );
+
+        } catch (error) {
+
+            console.error("Unable to verify user role:", error);
+
+            // Fail securely: never show admin link if verification fails
+            if (adminLink) {
+                adminLink.hidden = true;
+            }
         }
 
     } else {
 
-        // Visitor is signed out
+        // User is signed out
         if (loginLink) {
             loginLink.hidden = false;
         }
 
         if (logoutButton) {
             logoutButton.hidden = true;
+            logoutButton.disabled = false;
+            logoutButton.textContent = "Logout";
         }
+
+        if (adminLink) {
+            adminLink.hidden = true;
+        }
+
+        console.log("Visitor is signed out.");
     }
 });
 
-// Sign out when Logout is clicked
+// ==========================================
+// LOGOUT
+// ==========================================
+
 if (logoutButton) {
 
     logoutButton.addEventListener("click", async () => {
@@ -48,8 +108,6 @@ if (logoutButton) {
         try {
 
             await signOut(auth);
-
-            // onAuthStateChanged will update the header
 
         } catch (error) {
 

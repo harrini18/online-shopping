@@ -12,11 +12,76 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script>
-        const savedTheme = localStorage.getItem("theme");
+        const savedTheme = localStorage.getItem("dressupTheme");
+
         if (savedTheme === "dark") {
             document.documentElement.setAttribute("data-theme", "dark");
         }
     </script>
+
+    <style>
+        .checkout-auth-message {
+            padding: 35px;
+            margin: 30px 0;
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-color, #eadde0);
+            text-align: center;
+        }
+
+        .checkout-auth-message p {
+            margin: 12px 0 22px;
+        }
+
+        .checkout-status {
+            margin: 15px 0;
+            padding: 13px 16px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .checkout-status.error {
+            background: #fce9ec;
+            color: #842638;
+        }
+
+        .checkout-status.success {
+            background: #e8f5e9;
+            color: #246332;
+        }
+
+        .checkout-status.info {
+            background: #f5edf0;
+            color: #762638;
+        }
+
+        .checkout-submit:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .checkout-payment-note {
+            margin-top: 15px;
+        }
+
+        .checkout-payment-note p {
+            font-size: 0.85rem;
+        }
+
+        .checkout-product-image img {
+            object-fit: cover;
+        }
+
+        .checkout-stock-warning {
+            color: #a52d40;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .checkout-product-price {
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,10 +108,12 @@
 
             <div class="nav-actions">
 
-                <button type="button"
+                <button
+                    type="button"
                     class="theme-toggle"
                     id="theme-toggle"
-                    aria-label="Switch theme">
+                    aria-label="Switch theme"
+                >
                     <span id="theme-icon">☾</span>
                 </button>
 
@@ -58,11 +125,11 @@
         </div>
     </header>
 
-
     <!-- CHECKOUT -->
     <main class="checkout-page container">
 
         <div class="checkout-heading">
+
             <p class="eyebrow">THE FINAL TOUCH</p>
 
             <h1>Almost <em>yours.</em></h1>
@@ -70,10 +137,29 @@
             <p>
                 A few details, and your favourite pieces will be on their way.
             </p>
+
         </div>
 
+        <!-- AUTHENTICATION MESSAGE -->
+        <section
+            id="checkout-auth-message"
+            class="checkout-auth-message"
+            hidden
+        >
+            <h2>One little step first.</h2>
 
-        <div class="checkout-layout">
+            <p>
+                Please sign in to your THE DRESSUP SOCIETY account
+                before placing your order.
+            </p>
+
+            <a href="login.html" class="shop-button">
+                SIGN IN TO CONTINUE →
+            </a>
+        </section>
+
+        <!-- CHECKOUT CONTENT -->
+        <div class="checkout-layout" id="checkout-layout" hidden>
 
             <!-- DELIVERY FORM -->
             <section class="checkout-form-section">
@@ -84,32 +170,41 @@
 
                     <h2>Where should we send it?</h2>
 
+                    <p id="customer-account" class="checkout-loading"></p>
+
                     <form id="checkout-form">
 
                         <div class="checkout-field">
                             <label for="full-name">Full Name</label>
+
                             <input
                                 type="text"
                                 id="full-name"
                                 placeholder="Your full name"
                                 autocomplete="name"
-                                required>
+                                maxlength="100"
+                                required
+                            >
                         </div>
 
                         <div class="checkout-two-column">
 
                             <div class="checkout-field">
                                 <label for="email">Email Address</label>
+
                                 <input
                                     type="email"
                                     id="email"
                                     placeholder="you@example.com"
                                     autocomplete="email"
-                                    required>
+                                    readonly
+                                    required
+                                >
                             </div>
 
                             <div class="checkout-field">
                                 <label for="phone">Phone Number</label>
+
                                 <input
                                     type="tel"
                                     id="phone"
@@ -117,34 +212,42 @@
                                     pattern="[0-9]{10}"
                                     maxlength="10"
                                     autocomplete="tel"
-                                    required>
+                                    required
+                                >
                             </div>
 
                         </div>
 
                         <div class="checkout-field">
                             <label for="address">Street Address</label>
+
                             <textarea
                                 id="address"
                                 placeholder="House number, street, apartment..."
                                 autocomplete="street-address"
-                                required></textarea>
+                                maxlength="250"
+                                required
+                            ></textarea>
                         </div>
 
                         <div class="checkout-two-column">
 
                             <div class="checkout-field">
                                 <label for="city">City</label>
+
                                 <input
                                     type="text"
                                     id="city"
                                     placeholder="Your city"
                                     autocomplete="address-level2"
-                                    required>
+                                    maxlength="100"
+                                    required
+                                >
                             </div>
 
                             <div class="checkout-field">
                                 <label for="pincode">PIN Code</label>
+
                                 <input
                                     type="text"
                                     id="pincode"
@@ -152,33 +255,54 @@
                                     pattern="[0-9]{6}"
                                     maxlength="6"
                                     autocomplete="postal-code"
-                                    required>
+                                    required
+                                >
                             </div>
 
                         </div>
 
                         <div class="checkout-field">
-                            <label for="payment-method">Payment Method</label>
+
+                            <label for="payment-method">
+                                Payment Method
+                            </label>
 
                             <select id="payment-method" required>
-                                <option value="">Choose payment method</option>
-                                <option value="cod">Cash on Delivery</option>
-                                <option value="online">Online Payment</option>
+                                <option value="cod">
+                                    Cash on Delivery
+                                </option>
+
+                                <option value="online" disabled>
+                                    Online Payment — Coming Soon
+                                </option>
                             </select>
+
                         </div>
 
                         <div class="checkout-payment-note">
                             <span>♡</span>
+
                             <p>
-                                Your payment options will be connected securely
-                                before the store goes live.
+                                Pay for your order when it arrives.
+                                Online payments will be available soon.
                             </p>
                         </div>
 
+                        <div
+                            id="checkout-status"
+                            class="checkout-status"
+                            role="status"
+                            aria-live="polite"
+                            hidden
+                        ></div>
+
                         <button
                             type="submit"
-                            class="shop-button checkout-submit">
-                            CONTINUE →
+                            id="place-order-button"
+                            class="shop-button checkout-submit"
+                            disabled
+                        >
+                            CHECKING YOUR ORDER...
                         </button>
 
                     </form>
@@ -186,7 +310,6 @@
                 </div>
 
             </section>
-
 
             <!-- ORDER SUMMARY -->
             <aside class="checkout-summary">
@@ -196,7 +319,9 @@
                 <h2>Order summary.</h2>
 
                 <div id="checkout-items">
-                    <p class="checkout-loading">Loading your selection...</p>
+                    <p class="checkout-loading">
+                        Loading your selection...
+                    </p>
                 </div>
 
                 <div id="checkout-summary-details">
@@ -208,11 +333,11 @@
 
                     <div class="checkout-summary-line">
                         <span>Delivery</span>
-                        <span>Calculated later</span>
+                        <strong>FREE</strong>
                     </div>
 
                     <div class="checkout-summary-total">
-                        <span>Estimated total</span>
+                        <span>Total</span>
                         <strong id="total">₹0</strong>
                     </div>
 
@@ -224,6 +349,7 @@
 
                 <div class="checkout-note">
                     <span>THE DRESSUP SOCIETY</span>
+
                     <p>
                         Curated with love. Chosen just for you.
                     </p>
@@ -234,7 +360,6 @@
         </div>
 
     </main>
-
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -252,28 +377,101 @@
         </div>
     </footer>
 
-
     <!-- CHECKOUT FUNCTIONALITY -->
-    <script>
+    <script type="module">
+
+        import { auth } from "./js/firebase.js";
+
+        import {
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        // ==========================================
+        // CONFIGURATION
+        // ==========================================
+
+        const API_URL = "http://localhost:5000/api";
         const CART_KEY = "cherryCart";
+        const REQUEST_KEY = "dressupOrderRequestId";
 
-        let cart = [];
+        // ==========================================
+        // PAGE ELEMENTS
+        // ==========================================
 
-        try {
-            const savedCart = JSON.parse(localStorage.getItem(CART_KEY));
-            cart = Array.isArray(savedCart) ? savedCart : [];
-        } catch (error) {
-            cart = [];
-        }
+        const layout = document.getElementById("checkout-layout");
+        const authMessage = document.getElementById("checkout-auth-message");
 
         const form = document.getElementById("checkout-form");
         const itemsContainer = document.getElementById("checkout-items");
-        const formatPrice = amount =>
-            "₹" + amount.toLocaleString("en-IN", {
+
+        const submitButton = document.getElementById("place-order-button");
+        const statusBox = document.getElementById("checkout-status");
+
+        const cartCount = document.getElementById("cart-count");
+
+        const subtotalElement = document.getElementById("subtotal");
+        const totalElement = document.getElementById("total");
+
+        // ==========================================
+        // APPLICATION STATE
+        // ==========================================
+
+        let cart = [];
+        let products = new Map();
+
+        let currentUser = null;
+        let inventoryLoaded = false;
+        let orderSubmitting = false;
+        let orderPlaced = false;
+
+        // ==========================================
+        // LOAD CART
+        // ==========================================
+
+        function loadCart() {
+
+            try {
+
+                const savedCart = JSON.parse(
+                    localStorage.getItem(CART_KEY)
+                );
+
+                cart = Array.isArray(savedCart)
+                    ? savedCart
+                    : [];
+
+                cart = cart.filter(item =>
+                    item &&
+                    Number.isSafeInteger(Number(item.id)) &&
+                    Number(item.id) > 0 &&
+                    Number.isInteger(item.quantity) &&
+                    item.quantity > 0
+                ).map(item => ({
+                    id: Number(item.id),
+                    quantity: item.quantity
+                }));
+
+            } catch (error) {
+
+                cart = [];
+
+            }
+        }
+
+        // ==========================================
+        // HELPER FUNCTIONS
+        // ==========================================
+
+        function formatPrice(amount) {
+
+            return "₹" + Number(amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2
             });
 
+        }
+
         function escapeHTML(value) {
+
             return String(value).replace(/[&<>"']/g, character => ({
                 "&": "&amp;",
                 "<": "&lt;",
@@ -281,39 +479,231 @@
                 '"': "&quot;",
                 "'": "&#39;"
             })[character]);
+
         }
+
+        function updateCartCount() {
+
+            const count = cart.reduce(
+                (sum, item) => sum + item.quantity,
+                0
+            );
+
+            cartCount.textContent = count;
+
+        }
+
+        function showStatus(message, type = "info") {
+
+            statusBox.textContent = message;
+            statusBox.className = `checkout-status ${type}`;
+            statusBox.hidden = false;
+
+        }
+
+        function hideStatus() {
+
+            statusBox.hidden = true;
+            statusBox.textContent = "";
+
+        }
+
+        function getCartProducts() {
+
+            return cart.map(item => {
+
+                const product = products.get(item.id);
+
+                return {
+                    ...item,
+                    product
+                };
+
+            });
+
+        }
+
+        // ==========================================
+        // CHECK INVENTORY FROM BACKEND
+        // ==========================================
+
+        async function loadInventory() {
+
+            inventoryLoaded = false;
+
+            submitButton.disabled = true;
+            submitButton.textContent = "CHECKING YOUR ORDER...";
+
+            itemsContainer.innerHTML = `
+                <p class="checkout-loading">
+                    Checking product availability...
+                </p>
+            `;
+
+            try {
+
+                const response = await fetch(
+                    `${API_URL}/products`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Unable to retrieve products.");
+                }
+
+                const result = await response.json();
+
+                if (!result.success || !Array.isArray(result.products)) {
+                    throw new Error("Invalid product information.");
+                }
+
+                products.clear();
+
+                result.products.forEach(product => {
+
+                    const id = Number(product.id);
+
+                    if (Number.isSafeInteger(id) && id > 0) {
+
+                        products.set(id, {
+                            ...product,
+                            id,
+                            price: Number(product.price),
+                            stock: Number(product.stock)
+                        });
+
+                    }
+
+                });
+
+                inventoryLoaded = true;
+
+                renderCheckout();
+
+            } catch (error) {
+
+                console.error("Checkout inventory error:", error);
+
+                inventoryLoaded = false;
+
+                itemsContainer.innerHTML = `
+                    <p class="checkout-stock-warning">
+                        Unable to verify inventory. Please refresh the page
+                        or try again later.
+                    </p>
+                `;
+
+                submitButton.disabled = true;
+                submitButton.textContent = "INVENTORY UNAVAILABLE";
+
+                showStatus(
+                    "We couldn't verify your products. Please try again.",
+                    "error"
+                );
+
+            }
+
+        }
+
+        // ==========================================
+        // VALIDATE CART AGAINST INVENTORY
+        // ==========================================
+
+        function validateCart() {
+
+            if (!inventoryLoaded || cart.length === 0) {
+                return false;
+            }
+
+            return cart.every(item => {
+
+                const product = products.get(item.id);
+
+                return (
+                    product &&
+                    Number.isFinite(product.price) &&
+                    product.price > 0 &&
+                    Number.isInteger(product.stock) &&
+                    product.stock >= item.quantity
+                );
+
+            });
+
+        }
+
+        // ==========================================
+        // DISPLAY ORDER SUMMARY
+        // ==========================================
 
         function renderCheckout() {
 
-            document.getElementById("cart-count").textContent =
-                cart.reduce((sum, item) =>
-                    sum + Math.max(0, Number(item.quantity) || 0), 0);
+            updateCartCount();
 
             if (cart.length === 0) {
 
                 itemsContainer.innerHTML = `
                     <div class="checkout-empty">
                         <h3>Your bag is empty.</h3>
-                        <p>There is nothing waiting for checkout just yet.</p>
-                        <a href="index.html#products" class="shop-button">
+
+                        <p>
+                            There is nothing waiting for checkout just yet.
+                        </p>
+
+                        <a
+                            href="index.html#products"
+                            class="shop-button"
+                        >
                             EXPLORE COLLECTIONS
                         </a>
                     </div>
                 `;
 
-                document.getElementById("checkout-summary-details").style.display = "none";
-                form.querySelector("button").disabled = true;
+                document.getElementById(
+                    "checkout-summary-details"
+                ).style.display = "none";
+
+                submitButton.disabled = true;
+                submitButton.textContent = "YOUR BAG IS EMPTY";
 
                 return;
+
             }
 
             let subtotal = 0;
+            let hasUnavailableProduct = false;
 
             itemsContainer.innerHTML = cart.map(item => {
 
-                const price = Number(item.price) || 0;
-                const quantity = Math.max(0, Number(item.quantity) || 0);
+                const product = products.get(item.id);
+
+                if (!product) {
+
+                    hasUnavailableProduct = true;
+
+                    return `
+                        <div class="checkout-product">
+                            <div class="checkout-product-info">
+                                <h3>Product unavailable</h3>
+
+                                <p class="checkout-stock-warning">
+                                    This product could not be found.
+                                </p>
+                            </div>
+                        </div>
+                    `;
+
+                }
+
+                const price = product.price;
+                const quantity = item.quantity;
                 const lineTotal = price * quantity;
+
+                const insufficientStock =
+                    !Number.isInteger(product.stock) ||
+                    product.stock < quantity;
+
+                if (insufficientStock) {
+                    hasUnavailableProduct = true;
+                }
 
                 subtotal += lineTotal;
 
@@ -321,16 +711,37 @@
                     <div class="checkout-product">
 
                         <div class="checkout-product-image">
+
                             <img
-                                src="${escapeHTML(item.image || "")}"
-                                alt="${escapeHTML(item.name || "Product")}"
-                                onerror="this.style.display='none'">
+                                src="${escapeHTML(product.image || "")}"
+                                alt="${escapeHTML(product.name || "Product")}"
+                            >
+
                             <span>${quantity}</span>
+
                         </div>
 
                         <div class="checkout-product-info">
-                            <h3>${escapeHTML(item.name || "Product")}</h3>
-                            <p>${escapeHTML(item.category || "")}</p>
+
+                            <h3>
+                                ${escapeHTML(product.name || "Product")}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(product.category || "")}
+                            </p>
+
+                            ${
+                                insufficientStock
+                                    ? `
+                                        <p class="checkout-stock-warning">
+                                            Insufficient stock. Available:
+                                            ${Math.max(0, product.stock || 0)}
+                                        </p>
+                                    `
+                                    : ""
+                            }
+
                         </div>
 
                         <strong class="checkout-product-price">
@@ -339,47 +750,297 @@
 
                     </div>
                 `;
+
             }).join("");
 
-            document.getElementById("subtotal").textContent =
-                formatPrice(subtotal);
+            subtotalElement.textContent = formatPrice(subtotal);
+            totalElement.textContent = formatPrice(subtotal);
 
-            document.getElementById("total").textContent =
-                formatPrice(subtotal);
+            document.getElementById(
+                "checkout-summary-details"
+            ).style.display = "block";
+
+            const valid = validateCart() && !hasUnavailableProduct;
+
+            submitButton.disabled = !valid || orderSubmitting || orderPlaced;
+
+            submitButton.textContent = orderPlaced
+                ? "ORDER PLACED ✓"
+                : valid
+                    ? "PLACE ORDER →"
+                    : "CHECK YOUR BAG";
+
+            if (hasUnavailableProduct) {
+
+                showStatus(
+                    "Some products are unavailable or have insufficient stock. Please return to your bag and update the quantities.",
+                    "error"
+                );
+
+            }
+
         }
 
-        renderCheckout();
+        // ==========================================
+        // AUTHENTICATION
+        // ==========================================
 
-        form.addEventListener("submit", function(event) {
+        onAuthStateChanged(auth, async user => {
+
+            currentUser = user;
+
+            if (!user) {
+
+                layout.hidden = true;
+                authMessage.hidden = false;
+
+                return;
+
+            }
+
+            authMessage.hidden = true;
+            layout.hidden = false;
+
+            document.getElementById("email").value =
+                user.email || "";
+
+            document.getElementById("customer-account").textContent =
+                `Signed in as ${user.email || "your account"}`;
+
+            loadCart();
+
+            await loadInventory();
+
+        });
+
+        // ==========================================
+        // PLACE ORDER
+        // ==========================================
+
+        form.addEventListener("submit", async event => {
 
             event.preventDefault();
 
-            if (cart.length === 0) {
-                alert("Your shopping bag is empty!");
+            if (orderSubmitting || orderPlaced) {
                 return;
             }
 
+            if (!currentUser) {
+
+                showStatus(
+                    "Please sign in before placing your order.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!validateCart()) {
+
+                showStatus(
+                    "Your shopping bag has unavailable products. Please update it before ordering.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!form.reportValidity()) {
+                return;
+            }
+
+            const paymentMethod =
+                document.getElementById("payment-method").value;
+
+            if (paymentMethod !== "cod") {
+
+                showStatus(
+                    "Online payment is not available yet. Please choose Cash on Delivery.",
+                    "error"
+                );
+
+                return;
+
+            }
+
             const customer = {
-                name: document.getElementById("full-name").value.trim(),
-                email: document.getElementById("email").value.trim(),
+
+                fullName: document.getElementById("full-name").value.trim(),
+
+                email: currentUser.email,
+
                 phone: document.getElementById("phone").value.trim(),
+
                 address: document.getElementById("address").value.trim(),
+
                 city: document.getElementById("city").value.trim(),
-                pincode: document.getElementById("pincode").value.trim(),
-                paymentMethod: document.getElementById("payment-method").value
+
+                pincode: document.getElementById("pincode").value.trim()
+
             };
 
-            sessionStorage.setItem(
-                "checkoutCustomer",
-                JSON.stringify(customer)
-            );
+            const items = cart.map(item => ({
+                id: item.id,
+                quantity: item.quantity
+            }));
 
-            alert(
-                "Your delivery details have been saved! Order placement will be connected next."
-            );
+            orderSubmitting = true;
+
+            submitButton.disabled = true;
+            submitButton.textContent = "PLACING YOUR ORDER...";
+
+            hideStatus();
+
+            try {
+
+                // Reuse the same request ID if the customer retries
+                // after a network interruption.
+
+                let requestId = sessionStorage.getItem(REQUEST_KEY);
+
+                if (!requestId) {
+
+                    requestId = crypto.randomUUID();
+
+                    sessionStorage.setItem(
+                        REQUEST_KEY,
+                        requestId
+                    );
+
+                }
+
+                const token = await currentUser.getIdToken();
+
+                const response = await fetch(`${API_URL}/orders`, {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+
+                    body: JSON.stringify({
+                        requestId,
+                        customer,
+                        items,
+                        paymentMethod
+                    })
+
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+
+                    throw new Error(
+                        result.message || "Unable to place your order."
+                    );
+
+                }
+
+                // Clear cart only after confirmed order creation.
+
+                localStorage.removeItem(CART_KEY);
+
+                sessionStorage.removeItem(REQUEST_KEY);
+
+                cart = [];
+
+                orderPlaced = true;
+
+                updateCartCount();
+
+                itemsContainer.innerHTML = `
+                    <div class="checkout-empty">
+
+                        <h3>Your order is confirmed!</h3>
+
+                        <p>
+                            Thank you for shopping with
+                            THE DRESSUP SOCIETY.
+                        </p>
+
+                        <p>
+                            Order ID:
+                            <strong>${escapeHTML(result.order.orderId)}</strong>
+                        </p>
+
+                        <p>
+                            Payment: Cash on Delivery
+                        </p>
+
+                        <h3>
+                            Total: ${formatPrice(result.order.total)}
+                        </h3>
+
+                        <a
+                            href="index.html"
+                            class="shop-button"
+                        >
+                            CONTINUE SHOPPING
+                        </a>
+
+                    </div>
+                `;
+
+                document.getElementById(
+                    "checkout-summary-details"
+                ).style.display = "none";
+
+                form.style.display = "none";
+
+                showStatus(
+                    "Your order has been placed successfully!",
+                    "success"
+                );
+
+                submitButton.textContent = "ORDER PLACED ✓";
+                submitButton.disabled = true;
+
+            } catch (error) {
+
+                console.error("Order placement error:", error);
+
+                showStatus(
+                    error.message || "Something went wrong. Please try again.",
+                    "error"
+                );
+
+                // Refresh product availability after an unsuccessful order.
+
+                if (
+                    error.message &&
+                    error.message.toLowerCase().includes("stock")
+                ) {
+                    await loadInventory();
+                }
+
+                submitButton.disabled = !validateCart();
+                submitButton.textContent = "TRY AGAIN";
+
+            } finally {
+
+                orderSubmitting = false;
+
+                if (!orderPlaced) {
+                    submitButton.disabled = !validateCart();
+                }
+
+            }
+
         });
-    </script>
 
+        // ==========================================
+        // INITIALIZE
+        // ==========================================
+
+        loadCart();
+        updateCartCount();
+
+    </script>
 
     <!-- THEME FUNCTIONALITY -->
     <script type="module" src="js/auth-theme.js"></script>

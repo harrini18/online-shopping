@@ -46,38 +46,54 @@
                 <a href="#products">Shop</a>
             </nav>
 
-<div class="nav-actions">
+            <div class="nav-actions">
 
-    <button
-        type="button"
-        class="theme-toggle"
-        id="theme-toggle"
-        aria-label="Switch to dark mode"
-        title="Switch theme">
+                <!-- THEME TOGGLE -->
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="theme-toggle"
+                    aria-label="Switch to dark mode"
+                    title="Switch theme">
 
-        <span id="theme-icon">☾</span>
+                    <span id="theme-icon">☾</span>
 
-    </button>
+                </button>
 
-    <!-- LOGIN: visible when the visitor is signed out -->
-    <a href="login.html" class="account-button" id="login-link">
-        Login
-    </a>
+                <!-- LOGIN -->
+                <a href="login.html"
+                    class="account-button"
+                    id="login-link">
+                    Login
+                </a>
 
-    <!-- LOGOUT: visible when the visitor is signed in -->
-    <button
-        type="button"
-        class="account-button"
-        id="logout-button"
-        hidden>
-        Logout
-    </button>
+                <!-- LOGOUT -->
+                <button
+                    type="button"
+                    class="account-button"
+                    id="logout-button"
+                    hidden>
+                    Logout
+                </button>
 
-    <a href="cart.html" class="cart-button" id="cart-button">
-        Bag <span id="cart-count">0</span>
-    </a>
+                <!-- ADMINISTRATION: ONLY VERIFIED ADMINS -->
+                <a
+                    href="admin.html"
+                    class="account-button"
+                    id="admin-link"
+                    hidden>
+                    Administration
+                </a>
 
-</div>
+                <!-- SHOPPING BAG -->
+                <a href="cart.html"
+                    class="cart-button"
+                    id="cart-button">
+                    Bag <span id="cart-count">0</span>
+                </a>
+
+            </div>
+
         </div>
     </header>
 
@@ -98,10 +114,10 @@
                     </h1>
 
                     <p class="hero-description">
-    From iconic costumes to the tiniest finishing details,
-    discover everything you need to bring your favourite
-    characters to life.
-</p>
+                        From iconic costumes to the tiniest finishing details,
+                        discover everything you need to bring your favourite
+                        characters to life.
+                    </p>
 
                     <a href="#products" class="shop-button">
                         EXPLORE THE COLLECTION →
@@ -362,7 +378,6 @@
 
                 <div class="fandom-grid">
 
-                    <!-- ANIME -->
                     <button
                         type="button"
                         class="fandom-card"
@@ -384,7 +399,6 @@
 
                     </button>
 
-                    <!-- MANGA -->
                     <button
                         type="button"
                         class="fandom-card"
@@ -406,7 +420,6 @@
 
                     </button>
 
-                    <!-- GAMES -->
                     <button
                         type="button"
                         class="fandom-card"
@@ -428,7 +441,6 @@
 
                     </button>
 
-                    <!-- MOVIES AND COMICS -->
                     <button
                         type="button"
                         class="fandom-card"
@@ -474,7 +486,6 @@
 
                 </div>
 
-                <!-- SEARCH AND FILTERS -->
                 <div class="shop-controls">
 
                     <div class="search-box">
@@ -515,12 +526,10 @@
 
                 </div>
 
-                <!-- PRODUCTS ARE DISPLAYED HERE -->
                 <div class="product-grid" id="product-list">
                     <p>Loading products...</p>
                 </div>
 
-                <!-- PAGINATION -->
                 <div class="pagination" id="pagination"></div>
 
             </div>
@@ -682,6 +691,9 @@
             }
         }
     </style>
-<script type="module" src="js/header-auth.js"></script>
+
+    <!-- HEADER AUTHENTICATION -->
+    <script type="module" src="js/header-auth.js"></script>
+
 </body>
 </html>

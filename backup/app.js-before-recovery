@@ -1,0 +1,31 @@
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================
+    // THE DRESSUP SOCIETY - PRODUCT CATALOGUE
+    // 60 PRODUCTS | 8 CATEGORIES
+    // ==========================================
+
+    const products = [
+        // --------------------------------------
+        // ORIGINAL PRODUCTS - IDS 1 TO 8
+        // --------------------------------------
+
+        {
+            id: 1,
+            name: "Raiden Shogun Costume Set",
+            description: "Purple character costume with matching wig and footwear.",
+            price: 2499,
+            category: "Costumes",
+            fandom: "Games",
+            franchise: "Genshin Impact",
+            character: "Raiden Shogun",
+            image: "https://down-ph.img.susercontent.com/file/ph-11134207-7r992-lld6vmmom20z4d",
+            featured: true
+        },
+        {
+            id: 2,
+            name: "Pink Twin-Tail Cosplay Wig",
+            description:

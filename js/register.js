@@ -3,7 +3,8 @@ import { auth, db } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    signOut
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
@@ -21,7 +22,7 @@ const message = document.getElementById("auth-message");
 const submitButton = registerForm.querySelector('button[type="submit"]');
 
 // ==========================================
-// SAFE REDIRECT DESTINATION
+// SAFE RETURN URL
 // ==========================================
 
 function getSafeReturnUrl() {
@@ -40,7 +41,6 @@ function getSafeReturnUrl() {
             window.location.origin
         );
 
-        // Only allow redirects within this website
         if (destination.origin !== window.location.origin) {
             return null;
         }
@@ -58,36 +58,35 @@ function getSafeReturnUrl() {
     }
 }
 
-// Decide where to send the customer after registration
-function getRedirectUrl() {
-
-    return getSafeReturnUrl() || "index.html";
-
-}
-
 // ==========================================
 // PRESERVE RETURN URL WHEN SWITCHING TO LOGIN
 // ==========================================
+
+const safeReturnUrl = getSafeReturnUrl();
 
 const loginLink = document.querySelector(
     'a[href="login.html"]'
 );
 
-const safeReturnUrl = getSafeReturnUrl();
-
-if (loginLink && safeReturnUrl) {
+function getLoginUrl() {
 
     const loginDestination = new URL(
         "login.html",
         window.location.href
     );
 
-    loginDestination.searchParams.set(
-        "returnUrl",
-        safeReturnUrl
-    );
+    if (safeReturnUrl) {
+        loginDestination.searchParams.set(
+            "returnUrl",
+            safeReturnUrl
+        );
+    }
 
-    loginLink.href = loginDestination.href;
+    return loginDestination.href;
+}
+
+if (loginLink) {
+    loginLink.href = getLoginUrl();
 }
 
 // ==========================================
@@ -116,7 +115,7 @@ registerForm.addEventListener("submit", async (event) => {
 
     try {
 
-        // Create the Firebase Authentication account
+        // Create Firebase Authentication account
         const userCredential = await createUserWithEmailAndPassword(
             auth,
             email,
@@ -125,7 +124,7 @@ registerForm.addEventListener("submit", async (event) => {
 
         const user = userCredential.user;
 
-        // Set the customer's display name
+        // Set customer's display name
         await updateProfile(user, {
             displayName: name
         });
@@ -142,13 +141,18 @@ registerForm.addEventListener("submit", async (event) => {
 
         });
 
-        message.textContent =
-            "Account created successfully! Redirecting...";
+        // Sign out the newly registered customer
+        await signOut(auth);
 
-        // Redirect to the original destination
+        message.textContent =
+            "Account created successfully! Please sign in.";
+
+        submitButton.textContent = "ACCOUNT CREATED";
+
+        // Redirect to login page
         setTimeout(() => {
 
-            window.location.href = getRedirectUrl();
+            window.location.href = getLoginUrl();
 
         }, 1200);
 

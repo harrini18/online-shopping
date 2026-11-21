@@ -1,16 +1,13 @@
 
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const { db } = require("./config/firebase");
-require("dotenv").config();
 
 const testRoutes = require("./routes/testRoutes");
 const productRoutes = require("./routes/productRoutes");
-// ==========================================
-// INITIALIZE FIREBASE ADMIN
-// ==========================================
-
-
+const orderRoutes = require("./routes/orderRoutes");
 
 // ==========================================
 // INITIALIZE EXPRESS
@@ -22,10 +19,15 @@ app.use(cors({
     origin: process.env.FRONTEND_URL || "http://127.0.0.1:5500"
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: "100kb" }));
+
+// ==========================================
+// API ROUTES
+// ==========================================
 
 app.use("/api/test", testRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 // ==========================================
 // HEALTH CHECK

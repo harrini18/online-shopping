@@ -1,0 +1,1988 @@
+
+/* =========================================
+   THE DRESSUP SOCIETY
+   DESIGNER'S STUDIO — CHERRY EDITION
+========================================= */
+
+/* =========================================
+   1. THEME FOUNDATION
+========================================= */
+
+.admin-page {
+    --studio-sidebar: #f8edef;
+    --studio-card: #ffffff;
+    --studio-panel: #fcf8f5;
+    --studio-line: #eadde0;
+    --studio-accent: #762638;
+    --studio-accent-light: #a83c50;
+    --studio-rose: #d98291;
+    --studio-muted: #81777a;
+
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body-font);
+    overflow-x: hidden;
+}
+
+.admin-page *,
+.admin-page *::before,
+.admin-page *::after {
+    box-sizing: border-box;
+}
+
+.admin-page button,
+.admin-page input,
+.admin-page textarea {
+    font: inherit;
+}
+
+.admin-page button {
+    cursor: pointer;
+}
+
+.admin-page a {
+    text-decoration: none;
+}
+
+.admin-page [hidden] {
+    display: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* =========================================
+   2. MAIN STUDIO LAYOUT
+========================================= */
+
+.studio-layout {
+    min-height: 100vh;
+}
+
+.studio-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+
+    width: 255px;
+    min-height: 100vh;
+    padding: 36px 25px 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--studio-sidebar);
+    border-right: 1px solid var(--studio-line);
+
+    transition: background 250ms ease;
+}
+
+.studio-main {
+    min-height: 100vh;
+    margin-left: 255px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--paper);
+}
+
+.studio-content {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 42px 5.5% 65px;
+}
+
+/* =========================================
+   3. SIDEBAR BRANDING
+========================================= */
+
+.studio-logo {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    color: var(--cherry);
+    font-family: var(--heading-font);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+.studio-logo span {
+    color: var(--cherry);
+}
+
+.studio-logo small {
+    width: 100%;
+    margin-top: 7px;
+
+    color: var(--crimson);
+    font-family: var(--body-font);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-align: center;
+}
+
+.sidebar-divider {
+    height: 1px;
+    margin: 35px 0 32px;
+    background: var(--studio-line);
+}
+
+.sidebar-label {
+    margin-bottom: 17px;
+
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   4. SIDEBAR NAVIGATION
+========================================= */
+
+.studio-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.studio-nav-link {
+    min-height: 46px;
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: all 220ms ease;
+}
+
+.studio-nav-link span {
+    width: 20px;
+    color: var(--crimson);
+    font-size: 19px;
+    text-align: center;
+}
+
+.studio-nav-link:hover {
+    background: rgba(217, 130, 145, 0.12);
+    color: var(--cherry);
+}
+
+.studio-nav-link.active {
+    background: var(--cherry);
+    color: #ffffff;
+    border-color: var(--cherry);
+    box-shadow: 0 5px 15px rgba(118, 38, 56, 0.12);
+}
+
+.studio-nav-link.active span {
+    color: #ffffff;
+}
+
+/* =========================================
+   5. SIDEBAR BOTTOM
+========================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-brand-note {
+    padding: 19px 14px;
+    margin-bottom: 20px;
+
+    border-top: 1px solid var(--studio-line);
+    border-bottom: 1px solid var(--studio-line);
+}
+
+.sidebar-brand-note span {
+    color: var(--rose);
+    font-size: 20px;
+}
+
+.sidebar-brand-note p {
+    margin-top: 9px;
+
+    color: var(--muted);
+    font-family: var(--heading-font);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.admin-logout {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 1px solid var(--studio-line);
+    border-radius: 3px;
+
+    background: transparent;
+    color: var(--cherry);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+
+    transition: all 250ms ease;
+}
+
+.admin-logout:hover {
+    background: var(--cherry);
+    color: #ffffff;
+    border-color: var(--cherry);
+}
+
+/* =========================================
+   6. TOP BAR
+========================================= */
+
+.studio-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    min-height: 88px;
+    padding: 15px 5.5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.topbar-label {
+    color: var(--cherry);
+    font-family: var(--heading-font);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.topbar-subtitle {
+    display: block;
+    margin-top: 5px;
+
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.studio-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.admin-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #65a77b;
+    box-shadow: 0 0 0 4px rgba(101, 167, 123, 0.12);
+}
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--surface);
+    color: var(--cherry);
+
+    font-size: 20px;
+
+    transition: all 250ms ease;
+}
+
+.theme-toggle:hover {
+    background: var(--blush);
+    border-color: var(--rose);
+    transform: rotate(15deg);
+}
+
+/* =========================================
+   7. WELCOME HERO SECTION
+========================================= */
+
+.studio-welcome {
+    position: relative;
+
+    min-height: 490px;
+    margin-bottom: 68px;
+    padding: 55px 6%;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background-color: #32101f;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(43, 23, 34, 0.88) 0%,
+            rgba(43, 23, 34, 0.78) 34%,
+            rgba(43, 23, 34, 0.43) 57%,
+            rgba(43, 23, 34, 0.08) 100%
+        ),
+        url("../images/studio-woman.png");
+
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    border: 1px solid rgba(217, 130, 145, 0.35);
+    border-radius: 8px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+}
+
+/* Decorative frame */
+
+.studio-welcome::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    z-index: -1;
+
+    border: 1px solid rgba(242, 190, 200, 0.16);
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+
+.studio-welcome::after {
+    content: "✿";
+    position: absolute;
+    top: 20px;
+    left: 25px;
+
+    color: #e99aaa;
+    font-size: 27px;
+    opacity: 0.75;
+
+    pointer-events: none;
+}
+
+/* Welcome text */
+
+.welcome-copy {
+    position: relative;
+    z-index: 2;
+
+    width: 60%;
+    max-width: 570px;
+
+    align-self: center;
+}
+
+.studio-welcome .admin-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0 0 28px;
+
+    color: #f0a8b7;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.studio-welcome .eyebrow-line {
+    width: 30px;
+    height: 1px;
+    flex-shrink: 0;
+
+    background: #e98fa2;
+}
+
+.studio-welcome h1 {
+    max-width: 600px;
+    margin: 0 0 22px;
+
+    color: #fff1f2;
+    font-family: var(--heading-font);
+    font-size: clamp(43px, 5vw, 65px);
+    font-weight: 500;
+    line-height: 1.12;
+}
+
+.studio-welcome h1 em {
+    display: block;
+
+    color: #e58a9e;
+    font-weight: 500;
+}
+
+.studio-welcome .welcome-copy > p:not(.admin-eyebrow) {
+    max-width: 470px;
+    margin: 0 0 30px;
+
+    color: #e0cbd1;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Welcome button */
+
+.studio-welcome .admin-primary-button {
+    min-height: 54px;
+    padding: 15px 27px;
+
+    background: #9b354e;
+    border: 1px solid #c65c74;
+    color: #ffffff;
+
+    font-size: 11px;
+    letter-spacing: 1.3px;
+}
+
+.studio-welcome .admin-primary-button:hover {
+    background: #bd506a;
+    border-color: #e58a9e;
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   8. SECTION HEADINGS
+========================================= */
+
+.studio-section-heading {
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.studio-section-heading .admin-eyebrow {
+    margin-bottom: 8px;
+}
+
+.studio-section-heading h2,
+.admin-section-heading h2 {
+    margin: 0;
+
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-size: 31px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.overview-date {
+    padding-bottom: 5px;
+
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+/* =========================================
+   9. STATISTICS CARDS
+========================================= */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+
+    margin-bottom: 40px;
+}
+
+.admin-stat-card {
+    min-height: 175px;
+    padding: 23px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    transition: all 250ms ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px var(--theme-shadow);
+}
+
+.admin-stat-card.featured-stat {
+    background: var(--soft-pink);
+}
+
+.stat-top {
+    width: 100%;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-icon {
+    color: var(--crimson);
+    font-family: var(--heading-font);
+    font-size: 25px;
+}
+
+.stat-caption {
+    color: var(--muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.admin-stat-card strong {
+    margin-top: 3px;
+
+    color: var(--cherry);
+    font-family: var(--heading-font);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.stat-note {
+    margin-top: 7px;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================
+   10. NOTIFICATION MESSAGE
+========================================= */
+
+.admin-message {
+    display: none;
+
+    margin: 0 0 25px;
+    padding: 14px 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    background: var(--surface);
+    color: var(--ink);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.admin-message.success {
+    display: block;
+    background: #edf7ef;
+    border-color: #b9dfc1;
+    color: #28653a;
+}
+
+.admin-message.error {
+    display: block;
+    background: #fff0f0;
+    border-color: #efc0c0;
+    color: #a52c36;
+}
+
+/* =========================================
+   11. CREATION WORKSPACE
+========================================= */
+
+.studio-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.8fr);
+    align-items: stretch;
+    gap: 25px;
+
+    margin: 45px 0 70px;
+}
+
+.studio-form-column {
+    min-width: 0;
+}
+
+/* =========================================
+   12. EMPTY CREATION PANEL
+========================================= */
+
+.studio-empty-workspace {
+    min-height: 390px;
+    height: 100%;
+    padding: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--rose);
+    border-radius: 4px;
+}
+
+.empty-workspace-icon {
+    margin-bottom: 22px;
+
+    color: var(--rose);
+    font-size: 36px;
+}
+
+.studio-empty-workspace .admin-eyebrow {
+    margin-bottom: 13px;
+}
+
+.studio-empty-workspace h2 {
+    max-width: 450px;
+    margin: 0 0 15px;
+
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.studio-empty-workspace h2 em {
+    color: var(--crimson);
+    font-weight: 500;
+}
+
+.studio-empty-workspace > p:not(.admin-eyebrow) {
+    max-width: 460px;
+    margin-bottom: 24px;
+
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   13. EDITORIAL SIDE PANEL
+========================================= */
+
+.studio-side-panel {
+    position: relative;
+
+    min-width: 0;
+    padding: 25px 27px;
+
+    overflow: hidden;
+
+    background: var(--studio-sidebar);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.side-panel-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    color: var(--muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.side-panel-top span:last-child {
+    color: var(--crimson);
+}
+
+.side-panel-art {
+    position: relative;
+
+    height: 150px;
+    margin: 15px 0 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-panel-ring {
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    border: 1px solid rgba(118, 38, 56, 0.3);
+    border-radius: 50%;
+}
+
+.side-panel-ring::before,
+.side-panel-ring::after {
+    position: absolute;
+    content: "";
+
+    border: 1px solid rgba(118, 38, 56, 0.2);
+    border-radius: 50%;
+}
+
+.side-panel-ring::before {
+    inset: 13px;
+}
+
+.side-panel-ring::after {
+    inset: 28px;
+}
+
+.side-panel-art > span {
+    position: relative;
+    z-index: 1;
+
+    color: var(--crimson);
+    font-size: 44px;
+}
+
+.studio-side-panel .admin-eyebrow {
+    margin-bottom: 12px;
+}
+
+.studio-side-panel h2 {
+    margin: 0 0 13px;
+
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.studio-side-panel h2 em {
+    display: block;
+    color: var(--crimson);
+    font-weight: 500;
+}
+
+.studio-side-panel > p:not(.admin-eyebrow) {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+.side-panel-divider {
+    height: 1px;
+    margin: 23px 0;
+    background: var(--border);
+}
+
+.studio-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+
+    margin-bottom: 17px;
+}
+
+.studio-tip:last-child {
+    margin-bottom: 0;
+}
+
+.studio-tip span {
+    color: var(--crimson);
+    font-family: var(--heading-font);
+    font-size: 15px;
+}
+
+.studio-tip p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   14. PRODUCT FORM
+========================================= */
+
+.admin-form-section {
+    margin-bottom: 0;
+    padding: 30px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--cherry);
+    border-radius: 4px;
+
+    box-shadow: 0 12px 30px var(--theme-shadow);
+
+    animation: adminFadeUp 350ms ease both;
+}
+
+/* Form heading */
+
+.admin-section-heading {
+    margin-bottom: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.admin-section-heading .admin-eyebrow {
+    margin-bottom: 9px;
+}
+
+.admin-section-heading h2 {
+    font-size: 28px;
+}
+
+.section-subtitle {
+    margin-top: 8px;
+
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.admin-close-button {
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--muted);
+
+    font-size: 22px;
+
+    transition: all 200ms ease;
+}
+
+.admin-close-button:hover {
+    background: var(--cherry);
+    color: #ffffff;
+    border-color: var(--cherry);
+    transform: rotate(90deg);
+}
+
+/* Form fields */
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 17px;
+}
+
+.admin-form-group {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-form-group > label {
+    margin-bottom: 8px;
+
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.admin-form-group input:not([type="checkbox"]),
+.admin-form-group textarea {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    outline: none;
+
+    background: var(--input-bg);
+    color: var(--ink);
+
+    font-size: 11px;
+
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.admin-form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.admin-form-group input::placeholder,
+.admin-form-group textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(217, 130, 145, 0.13);
+}
+
+/* Checkbox */
+
+.admin-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 3px;
+
+    background: var(--surface-alt);
+    cursor: pointer;
+}
+
+.admin-checkbox-label input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+
+    accent-color: var(--cherry);
+}
+
+.admin-checkbox-label span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.admin-checkbox-label strong {
+    color: var(--ink);
+    font-size: 11px;
+}
+
+.admin-checkbox-label small {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* Form action buttons */
+
+.admin-form-actions {
+    margin-top: 25px;
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 11px;
+
+    border-top: 1px solid var(--border);
+}
+
+/* =========================================
+   15. BUTTONS
+========================================= */
+
+.admin-primary-button,
+.admin-secondary-button {
+    min-height: 45px;
+    padding: 12px 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border-radius: 3px;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+
+    transition: all 250ms ease;
+}
+
+.admin-primary-button {
+    border: 1px solid var(--cherry);
+    background: var(--cherry);
+    color: #ffffff;
+}
+
+.admin-primary-button:hover {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(118, 38, 56, 0.15);
+}
+
+.admin-primary-button span {
+    font-size: 16px;
+}
+
+.admin-secondary-button {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+}
+
+.admin-secondary-button:hover {
+    background: var(--blush);
+    border-color: var(--rose);
+    color: var(--cherry);
+}
+
+.admin-page button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+/* =========================================
+   16. INVENTORY SECTION
+========================================= */
+
+.admin-products-section {
+    margin-top: 65px;
+}
+
+.inventory-heading {
+    margin-bottom: 25px;
+    align-items: flex-end;
+}
+
+.inventory-heading h2 {
+    font-size: 35px;
+}
+
+.product-count-label {
+    padding: 9px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    background: var(--surface);
+    color: var(--cherry);
+
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* =========================================
+   17. INVENTORY TABLE
+========================================= */
+
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    box-shadow: 0 8px 25px var(--theme-shadow);
+}
+
+.admin-products-table {
+    width: 100%;
+    min-width: 760px;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    text-align: left;
+}
+
+.admin-products-table thead {
+    background: var(--soft-pink);
+}
+
+.admin-products-table th {
+    padding: 16px 17px;
+
+    color: var(--cherry);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    white-space: nowrap;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-products-table td {
+    padding: 15px 17px;
+
+    color: var(--ink);
+    font-size: 11px;
+    vertical-align: middle;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-products-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-products-table tbody tr {
+    transition: background 180ms ease;
+}
+
+.admin-products-table tbody tr:hover {
+    background: var(--surface-alt);
+}
+
+/* Empty inventory */
+
+.admin-table-empty {
+    padding: 40px 15px !important;
+    color: var(--muted) !important;
+    text-align: center;
+}
+
+/* Product name */
+
+.admin-product-name {
+    min-width: 150px;
+    max-width: 240px;
+
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Featured status */
+
+.product-featured-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: var(--soft-pink);
+    color: var(--cherry);
+
+    font-size: 9px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Product actions */
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.edit-product-button,
+.delete-product-button {
+    min-height: 31px;
+    padding: 7px 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 3px;
+
+    background: transparent;
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    transition: all 200ms ease;
+}
+
+.edit-product-button {
+    color: var(--cherry);
+}
+
+.edit-product-button:hover {
+    background: var(--cherry);
+    border-color: var(--cherry);
+    color: #ffffff;
+}
+
+.delete-product-button {
+    color: #b23b46;
+}
+
+.delete-product-button:hover {
+    background: #b23b46;
+    border-color: #b23b46;
+    color: #ffffff;
+}
+
+/* =========================================
+   18. BOTTOM BRAND NOTE
+========================================= */
+
+.admin-bottom-note {
+    margin-top: 75px;
+    padding: 27px 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-bottom-note span {
+    color: var(--rose);
+    font-size: 17px;
+}
+
+.admin-bottom-note p {
+    color: var(--muted);
+    font-family: var(--heading-font);
+    font-size: 17px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* =========================================
+   19. FOOTER
+========================================= */
+
+.admin-footer {
+    min-height: 95px;
+    margin-top: auto;
+    padding: 25px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: var(--dark);
+    color: #ffffff;
+    text-align: center;
+}
+
+.admin-footer p {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.admin-footer span {
+    color: #e6cdd3;
+    font-size: 8px;
+    letter-spacing: 1.7px;
+}
+
+/* =========================================
+   20. DARK THEME
+========================================= */
+
+html[data-theme="dark"] .admin-page {
+    --studio-sidebar: #21181e;
+    --studio-card: #21181e;
+    --studio-panel: #2b2027;
+    --studio-line: #49323b;
+
+    background: var(--paper);
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .studio-sidebar {
+    background: var(--studio-sidebar);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .studio-logo,
+html[data-theme="dark"] .studio-logo span {
+    color: #fff0f2;
+}
+
+html[data-theme="dark"] .studio-logo small {
+    color: #e8a0ae;
+}
+
+html[data-theme="dark"] .studio-nav-link {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .studio-nav-link:hover {
+    background: #38232c;
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .studio-nav-link.active {
+    background: var(--cherry);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .studio-main {
+    background: var(--paper);
+}
+
+html[data-theme="dark"] .studio-topbar {
+    background: var(--header-bg);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .topbar-label {
+    color: #f2bdc7;
+}
+
+/* Dark theme welcome text */
+
+html[data-theme="dark"] .studio-welcome {
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .studio-welcome h1 {
+    color: #fff1f2;
+}
+
+html[data-theme="dark"] .studio-welcome h1 em {
+    color: #e58a9e;
+}
+
+html[data-theme="dark"] .studio-welcome .welcome-copy > p:not(.admin-eyebrow) {
+    color: #e0cbd1;
+}
+
+html[data-theme="dark"] .admin-stat-card,
+html[data-theme="dark"] .studio-empty-workspace,
+html[data-theme="dark"] .admin-form-section,
+html[data-theme="dark"] .admin-table-wrapper {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-stat-card.featured-stat,
+html[data-theme="dark"] .studio-side-panel {
+    background: var(--surface-alt);
+}
+
+html[data-theme="dark"] .admin-stat-card strong {
+    color: var(--rose);
+}
+
+html[data-theme="dark"] .studio-side-panel {
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .studio-nav-link span {
+    color: var(--rose);
+}
+
+html[data-theme="dark"] .studio-nav-link.active span {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .admin-form-group input:not([type="checkbox"]),
+html[data-theme="dark"] .admin-form-group textarea {
+    background: var(--input-bg);
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-checkbox-label {
+    background: var(--surface-alt);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-checkbox-label strong {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .admin-products-table thead {
+    background: var(--surface-alt);
+}
+
+html[data-theme="dark"] .admin-products-table th {
+    color: var(--rose);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-products-table td {
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-products-table tbody tr:hover {
+    background: var(--surface-alt);
+}
+
+html[data-theme="dark"] .admin-product-name {
+    color: var(--ink);
+}
+
+html[data-theme="dark"] .product-featured-status {
+    background: #38232c;
+    color: #f2bdc7;
+}
+
+html[data-theme="dark"] .product-count-label {
+    background: var(--surface);
+    color: var(--rose);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .theme-toggle {
+    background: var(--surface);
+    color: var(--rose);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+    background: var(--surface-alt);
+}
+
+html[data-theme="dark"] .admin-logout {
+    color: #f2bdc7;
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .admin-logout:hover {
+    background: var(--cherry);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .admin-footer {
+    background: #100c10;
+}
+
+/* =========================================
+   21. TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1100px) {
+    .studio-sidebar {
+        width: 220px;
+        padding-inline: 19px;
+    }
+
+    .studio-main {
+        margin-left: 220px;
+    }
+
+    .studio-content {
+        padding-inline: 4%;
+    }
+
+    .studio-welcome {
+        padding: 38px;
+    }
+
+    .welcome-copy {
+        width: 65%;
+    }
+
+    .studio-workspace {
+        grid-template-columns: minmax(0, 1.3fr) minmax(230px, 0.8fr);
+        gap: 17px;
+    }
+
+    .studio-side-panel {
+        padding: 21px;
+    }
+
+    .studio-empty-workspace {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    .studio-welcome {
+        min-height: 440px;
+
+        background-position: 65% center;
+
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(43, 23, 34, 0.90) 0%,
+                rgba(43, 23, 34, 0.78) 42%,
+                rgba(43, 23, 34, 0.35) 75%,
+                rgba(43, 23, 34, 0.10) 100%
+            ),
+            url("../images/studio-woman.png");
+    }
+
+    .welcome-copy {
+        width: 70%;
+    }
+}
+
+@media (max-width: 850px) {
+    .studio-sidebar {
+        position: relative;
+        inset: auto;
+
+        width: 100%;
+        min-height: auto;
+        padding: 18px 5%;
+
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 16px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .studio-logo {
+        font-size: 20px;
+    }
+
+    .sidebar-divider,
+    .sidebar-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .studio-navigation {
+        flex-direction: row;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .studio-nav-link {
+        min-height: 36px;
+        padding: 0 9px;
+        gap: 6px;
+        font-size: 10px;
+    }
+
+    .studio-nav-link span {
+        font-size: 15px;
+    }
+
+    .studio-main {
+        margin-left: 0;
+    }
+
+    .studio-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .studio-side-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 25px;
+    }
+
+    .side-panel-top,
+    .side-panel-art,
+    .studio-side-panel .admin-eyebrow,
+    .studio-side-panel h2,
+    .studio-side-panel > p,
+    .side-panel-divider,
+    .studio-tip {
+        grid-column: 1 / -1;
+    }
+
+    .studio-side-panel .side-panel-art {
+        height: 110px;
+    }
+
+    .studio-side-panel .side-panel-ring {
+        width: 95px;
+        height: 95px;
+    }
+
+    .studio-side-panel .side-panel-ring::before {
+        inset: 10px;
+    }
+
+    .studio-side-panel .side-panel-ring::after {
+        inset: 21px;
+    }
+}
+
+/* =========================================
+   22. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+    .studio-sidebar {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 15px;
+    }
+
+    .studio-logo {
+        align-items: center;
+    }
+
+    .studio-navigation {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .studio-nav-link {
+        padding-inline: 7px;
+        font-size: 9px;
+    }
+
+    .studio-topbar {
+        min-height: 72px;
+        padding: 12px 5%;
+    }
+
+    .topbar-label {
+        font-size: 14px;
+    }
+
+    .topbar-subtitle {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .studio-topbar-actions {
+        gap: 10px;
+    }
+
+    .admin-status {
+        font-size: 0;
+    }
+
+    .admin-status .status-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .studio-content {
+        padding: 25px 5% 45px;
+    }
+
+    /* Mobile hero */
+
+    .studio-welcome {
+        min-height: 460px;
+        padding: 35px 23px;
+
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 45px;
+
+        background-position: 67% center;
+        background-size: cover;
+
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(43, 23, 34, 0.92) 0%,
+                rgba(43, 23, 34, 0.82) 42%,
+                rgba(43, 23, 34, 0.42) 75%,
+                rgba(43, 23, 34, 0.20) 100%
+            ),
+            url("../images/studio-woman.png");
+    }
+
+    .welcome-copy {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .studio-welcome h1 {
+        font-size: 39px;
+    }
+
+    .studio-welcome .welcome-copy > p:not(.admin-eyebrow) {
+        font-size: 11px;
+    }
+
+    .studio-welcome .admin-eyebrow {
+        margin-bottom: 22px;
+    }
+
+    .studio-section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .studio-section-heading h2 {
+        font-size: 27px;
+    }
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .admin-stat-card {
+        min-height: 145px;
+        padding: 20px;
+    }
+
+    .studio-workspace {
+        margin: 35px 0 50px;
+    }
+
+    .studio-empty-workspace {
+        min-height: 330px;
+        padding: 27px 22px;
+    }
+
+    .studio-empty-workspace h2 {
+        font-size: 28px;
+    }
+
+    .studio-side-panel {
+        display: block;
+        padding: 23px;
+    }
+
+    .studio-side-panel .side-panel-art {
+        height: 130px;
+    }
+
+    .admin-form-section {
+        padding: 23px 18px;
+    }
+
+    .admin-section-heading h2 {
+        font-size: 25px;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .admin-full-width {
+        grid-column: auto;
+    }
+
+    .admin-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .admin-form-actions button {
+        width: 100%;
+    }
+
+    .inventory-heading {
+        align-items: flex-start;
+    }
+
+    .inventory-heading h2 {
+        font-size: 29px;
+    }
+
+    .admin-products-table {
+        min-width: 760px;
+    }
+
+    .admin-bottom-note {
+        margin-top: 50px;
+        gap: 10px;
+    }
+
+    .admin-bottom-note p {
+        font-size: 14px;
+    }
+
+    .admin-footer {
+        min-height: 85px;
+    }
+
+    .admin-footer span {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+}
+
+/* =========================================
+   23. SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+    .studio-nav-link {
+        padding-inline: 5px;
+        gap: 4px;
+        font-size: 8px;
+    }
+
+    .studio-content {
+        padding-inline: 4%;
+    }
+
+    .studio-welcome {
+        min-height: 430px;
+        padding-inline: 19px;
+
+        background-position: 65% center;
+    }
+
+    .studio-welcome h1 {
+        font-size: 34px;
+    }
+
+    .admin-primary-button,
+    .admin-secondary-button {
+        padding-inline: 13px;
+        font-size: 8px;
+    }
+
+    .studio-empty-workspace h2 {
+        font-size: 25px;
+    }
+}
+
+/* =========================================
+   24. ANIMATIONS
+========================================= */
+
+@keyframes adminFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   25. ACCESSIBILITY
+========================================= */
+
+.admin-page button:focus-visible,
+.admin-page a:focus-visible,
+.admin-page input:focus-visible,
+.admin-page textarea:focus-visible {
+    outline: 3px solid var(--rose);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .admin-page *,
+    .admin-page *::before,
+    .admin-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==========================================
+   INVENTORY STOCK STATUS
+========================================== */
+
+.stock-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 11px;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.stock-status.in-stock {
+    color: #34734d;
+    background: #e5f3e9;
+}
+
+.stock-status.out-of-stock {
+    color: #a33c4b;
+    background: #f8e4e7;
+}
+
+html[data-theme="dark"] .stock-status.in-stock {
+    color: #a9e0b9;
+    background: #20382a;
+}
+
+html[data-theme="dark"] .stock-status.out-of-stock {
+    color: #f0a5ae;
+    background: #48252e;
+}

@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Designer Studio | THE DRESSUP SOCIETY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-page designer-studio">
+
+    <div class="studio-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="studio-sidebar">
+
+            <a href="index.html" class="logo studio-logo">
+                <span>THE DRESSUP</span>
+                <small>SOCIETY</small>
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <p class="sidebar-label">WORKSPACE</p>
+
+            <nav class="studio-navigation">
+
+                <a href="#overview" class="studio-nav-link active">
+                    <span>⌂</span>
+                    Overview
+                </a>
+
+                <a href="#product-form-section" class="studio-nav-link">
+                    <span>＋</span>
+                    Add Product
+                </a>
+
+                <a href="#inventory" class="studio-nav-link">
+                    <span>▤</span>
+                    Inventory
+                </a>
+
+                <a href="index.html" class="studio-nav-link">
+                    <span>↗</span>
+                    Visit Boutique
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-brand-note">
+                    <span>✳</span>
+                    <p>Style is a way to express who you are.</p>
+                </div>
+
+                <button type="button" id="admin-logout" class="admin-logout">
+                    <span>↗</span> LOG OUT
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="studio-main">
+
+            <!-- TOP BAR -->
+            <header class="studio-topbar">
+
+                <div>
+                    <p class="topbar-label">THE DRESSUP SOCIETY</p>
+                    <span class="topbar-subtitle">ADMINISTRATION / DESIGN STUDIO</span>
+                </div>
+
+                <div class="studio-topbar-actions">
+
+                    <span class="admin-status">
+                        <span class="status-dot"></span>
+                        STUDIO ACTIVE
+                    </span>
+
+                    <button type="button"
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        aria-label="Switch theme">
+                        <span id="theme-icon">☾</span>
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- PAGE CONTENT -->
+            <div class="studio-content">
+
+                <!-- OVERVIEW -->
+                <section id="overview" class="studio-welcome">
+
+                    <div class="welcome-copy">
+
+                        <p class="admin-eyebrow">
+                            <span class="eyebrow-line"></span>
+                            YOUR CREATIVE SPACE
+                        </p>
+
+                        <h1>
+                            Welcome to your
+                            <em>studio.</em>
+                        </h1>
+
+                        <p>
+                            Every collection tells a story.
+                            Curate your products, discover new possibilities
+                            and bring your boutique vision to life.
+                        </p>
+
+                        <button type="button"
+                            id="add-product-button"
+                            class="admin-primary-button">
+                            <span>＋</span> CREATE NEW PRODUCT
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <!-- STATISTICS -->
+                <section class="studio-overview-section">
+
+                    <div class="studio-section-heading">
+
+                        <div>
+                            <p class="admin-eyebrow">A LITTLE OVERVIEW</p>
+                            <h2>Your boutique at a glance</h2>
+                        </div>
+
+                        <span class="overview-date">COLLECTION OVERVIEW</span>
+
+                    </div>
+
+                    <div class="admin-stats">
+
+                        <article class="admin-stat-card">
+
+                            <div class="stat-top">
+                                <span class="stat-icon">◇</span>
+                                <span class="stat-caption">INVENTORY</span>
+                            </div>
+
+                            <span class="stat-label">Total Products</span>
+                            <strong id="total-products">0</strong>
+                            <span class="stat-note">Products in your boutique</span>
+
+                        </article>
+
+                        <article class="admin-stat-card featured-stat">
+
+                            <div class="stat-top">
+                                <span class="stat-icon">✧</span>
+                                <span class="stat-caption">HIGHLIGHTS</span>
+                            </div>
+
+                            <span class="stat-label">Featured Products</span>
+                            <strong id="featured-products">0</strong>
+                            <span class="stat-note">Showcased in your collection</span>
+
+                        </article>
+
+                        <article class="admin-stat-card">
+
+                            <div class="stat-top">
+                                <span class="stat-icon">❀</span>
+                                <span class="stat-caption">CATEGORIES</span>
+                            </div>
+
+                            <span class="stat-label">Product Categories</span>
+                            <strong id="total-categories">0</strong>
+                            <span class="stat-note">Unique shopping categories</span>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <!-- NOTIFICATIONS -->
+                <div id="admin-message"
+                    class="admin-message"
+                    role="status"
+                    aria-live="polite">
+                </div>
+
+                <!-- CREATION WORKSPACE -->
+                <section class="studio-workspace">
+
+                    <!-- PRODUCT FORM -->
+                    <div class="studio-form-column">
+
+                        <section id="product-form-section"
+                            class="admin-form-section"
+                            hidden>
+
+                            <div class="admin-section-heading">
+
+                                <div>
+                                    <p class="admin-eyebrow">THE DETAILS</p>
+
+                                    <h2 id="product-form-title">
+                                        Add a New Product
+                                    </h2>
+
+                                    <p class="section-subtitle">
+                                        Introduce something beautiful to your collection.
+                                    </p>
+                                </div>
+
+                                <button type="button"
+                                    id="cancel-product-form"
+                                    class="admin-close-button"
+                                    aria-label="Close product form">
+                                    ×
+                                </button>
+
+                            </div>
+
+                            <form id="admin-product-form">
+
+                                <input type="hidden" id="product-document-id">
+
+                                <div class="admin-form-grid">
+
+                                    <div class="admin-form-group">
+                                        <label for="product-name">PRODUCT NAME *</label>
+
+                                        <input type="text"
+                                            id="product-name"
+                                            name="name"
+                                            placeholder="e.g. Sakura Dream Dress"
+                                            required>
+                                    </div>
+
+                                    <div class="admin-form-group">
+                                        <label for="product-price">PRICE (₹) *</label>
+
+                                        <input type="number"
+                                            id="product-price"
+                                            name="price"
+                                            min="1"
+                                            step="0.01"
+                                            placeholder="Enter product price"
+                                            required>
+                                    </div>
+
+                                    <!-- NEW STOCK FIELD -->
+                                    <div class="admin-form-group">
+                                        <label for="product-stock">STOCK QUANTITY *</label>
+
+                                        <input type="number"
+                                            id="product-stock"
+                                            name="stock"
+                                            min="0"
+                                            step="1"
+                                            value="0"
+                                            placeholder="Enter available quantity"
+                                            required>
+                                    </div>
+
+                                    <div class="admin-form-group">
+                                        <label for="product-category">CATEGORY *</label>
+
+                                        <input type="text"
+                                            id="product-category"
+                                            name="category"
+                                            placeholder="e.g. Costumes"
+                                            required>
+                                    </div>
+
+                                    <div class="admin-form-group">
+                                        <label for="product-fandom">FANDOM *</label>
+
+                                        <input type="text"
+                                            id="product-fandom"
+                                            name="fandom"
+                                            placeholder="e.g. Demon Slayer"
+                                            required>
+                                    </div>
+
+                                    <div class="admin-form-group admin-full-width">
+                                        <label for="product-image">PRODUCT IMAGE URL *</label>
+
+                                        <input type="url"
+                                            id="product-image"
+                                            name="image"
+                                            placeholder="https://example.com/image.jpg"
+                                            required>
+                                    </div>
+
+                                    <div class="admin-form-group admin-full-width">
+                                        <label for="product-description">PRODUCT DESCRIPTION *</label>
+
+                                        <textarea id="product-description"
+                                            name="description"
+                                            rows="4"
+                                            placeholder="Tell your customers what makes this product special..."
+                                            required></textarea>
+                                    </div>
+
+                                    <div class="admin-form-group admin-full-width">
+
+                                        <label class="admin-checkbox-label">
+
+                                            <input type="checkbox"
+                                                id="product-featured"
+                                                name="featured">
+
+                                            <span>
+                                                <strong>Feature this product</strong>
+                                                <small>
+                                                    Display it in the storefront's featured collection.
+                                                </small>
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="admin-form-actions">
+
+                                    <button type="button"
+                                        id="cancel-product-button"
+                                        class="admin-secondary-button">
+                                        CANCEL
+                                    </button>
+
+                                    <button type="submit"
+                                        id="save-product-button"
+                                        class="admin-primary-button">
+                                        SAVE PRODUCT <span>→</span>
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </section>
+
+                        <!-- EDITORIAL PANEL -->
+                        <div class="studio-empty-workspace">
+
+                            <span class="empty-workspace-icon">✳</span>
+
+                            <p class="admin-eyebrow">YOUR NEXT CREATION</p>
+
+                            <h2>Make room for something <em>beautiful.</em></h2>
+
+                            <p>
+                                Add a new cosplay piece, introduce a character
+                                collection or give your customers something
+                                wonderful to discover.
+                            </p>
+
+                            <button type="button"
+                                class="admin-secondary-button"
+                                id="studio-create-button">
+                                START CREATING →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT EDITORIAL PANEL -->
+                    <aside class="studio-side-panel">
+
+                        <div class="side-panel-top">
+                            <span>THE CREATIVE NOTE</span>
+                            <span>✧ 01</span>
+                        </div>
+
+                        <div class="side-panel-art">
+                            <div class="side-panel-ring"></div>
+                            <span>✳</span>
+                        </div>
+
+                        <p class="admin-eyebrow">A NOTE TO THE CURATOR</p>
+
+                        <h2>
+                            Your collection.
+                            <em>Your imagination.</em>
+                        </h2>
+
+                        <p>
+                            From iconic anime characters to statement
+                            cosplay pieces, every product deserves
+                            its own place in the spotlight.
+                        </p>
+
+                        <div class="side-panel-divider"></div>
+
+                        <div class="studio-tip">
+                            <span>01</span>
+                            <p>Keep product descriptions clear and inviting.</p>
+                        </div>
+
+                        <div class="studio-tip">
+                            <span>02</span>
+                            <p>Use high-quality product images.</p>
+                        </div>
+
+                        <div class="studio-tip">
+                            <span>03</span>
+                            <p>Feature your collection highlights.</p>
+                        </div>
+
+                    </aside>
+
+                </section>
+
+                <!-- INVENTORY -->
+                <section id="inventory" class="admin-products-section">
+
+                    <div class="admin-section-heading inventory-heading">
+
+                        <div>
+                            <p class="admin-eyebrow">THE COLLECTION</p>
+                            <h2>Product Inventory</h2>
+
+                            <p class="section-subtitle">
+                                Everything currently available in your boutique.
+                            </p>
+                        </div>
+
+                        <span id="product-count-label"
+                            class="product-count-label">
+                            0 products
+                        </span>
+
+                    </div>
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-products-table">
+
+                            <thead>
+                                <tr>
+                                    <th>PRODUCT</th>
+                                    <th>CATEGORY</th>
+                                    <th>FANDOM</th>
+                                    <th>PRICE</th>
+                                    <th>STOCK</th>
+                                    <th>STATUS</th>
+                                    <th>FEATURED</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="admin-product-list">
+
+                                <tr>
+                                    <td colspan="8" class="admin-table-empty">
+                                        Your products will appear here.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+                <!-- FOOTER BRAND MESSAGE -->
+                <section class="admin-bottom-note">
+                    <span>✧</span>
+                    <p>Curated with love. Styled with imagination.</p>
+                    <span>✧</span>
+                </section>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+                <p>THE DRESSUP SOCIETY © 2026</p>
+                <span>ANIME FASHION · COSPLAY · EXPRESSION</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/admin-theme.js"></script>
+    <script type="module" src="js/admin.js"></script>
+
+</body>
+</html>

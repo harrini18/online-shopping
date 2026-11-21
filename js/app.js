@@ -6,8 +6,6 @@ import {
     onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-"use strict";
-
 document.addEventListener("DOMContentLoaded", () => {
 
     // ==========================================
@@ -16,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let products = [];
     let featuredProducts = [];
-
 
     // ==========================================
     // PAGE ELEMENTS
@@ -40,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Theme elements
     const themeToggle = document.getElementById("theme-toggle");
     const themeIcon = document.getElementById("theme-icon");
-
 
     // ==========================================
     // SHOPPING STATE
@@ -66,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
         cart = [];
     }
-
 
     // ==========================================
     // THEME SWITCHER
@@ -103,9 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-    // Check whether the visitor has already selected a theme.
-
     let savedTheme = null;
 
     try {
@@ -113,9 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
         savedTheme = null;
     }
-
-
-    // Use the computer's theme preference on the first visit.
 
     const systemPrefersDark =
         window.matchMedia &&
@@ -128,13 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? "dark"
                 : "light";
 
-
-    // Apply the initial theme.
-
     applyTheme(initialTheme);
-
-
-    // Switch themes when the visitor clicks the button.
 
     if (themeToggle) {
 
@@ -159,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // ==========================================
     // HELPER FUNCTIONS
     // ==========================================
@@ -168,11 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return "₹" + Number(price).toLocaleString("en-IN");
     }
 
-
     function saveCart() {
         localStorage.setItem("cherryCart", JSON.stringify(cart));
     }
-
 
     function updateCartCount() {
 
@@ -185,11 +165,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     function getProduct(id) {
         return products.find(product => product.id === Number(id));
     }
 
+    // Normalize stock values.
+    // Products without a stock field are treated as unavailable.
+
+    function getStock(product) {
+
+        const stock = Number(product.stock);
+
+        if (!Number.isInteger(stock) || stock < 0) {
+            return 0;
+        }
+
+        return stock;
+    }
+
+    function isOutOfStock(product) {
+        return getStock(product) <= 0;
+    }
+
+    function getStockLabel(product) {
+
+        if (isOutOfStock(product)) {
+            return `
+                <span class="product-stock-status out-of-stock">
+                    OUT OF STOCK
+                </span>
+            `;
+        }
+
+        return `
+            <span class="product-stock-status in-stock">
+                IN STOCK
+            </span>
+        `;
+    }
 
     // ==========================================
     // ADD TO SHOPPING BAG
@@ -201,11 +214,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!product) return;
 
-        const existingItem = cart.find(item => item.id === product.id);
+        const availableStock = getStock(product);
+
+        // Prevent adding products that are unavailable.
+
+        if (availableStock <= 0) {
+
+            alert("Sorry! This product is currently out of stock.");
+
+            return;
+        }
+
+        const existingItem = cart.find(
+            item => Number(item.id) === product.id
+        );
+
+        const currentCartQuantity = existingItem
+            ? Number(existingItem.quantity) || 0
+            : 0;
+
+        // Prevent customers from exceeding available stock.
+
+        if (currentCartQuantity >= availableStock) {
+
+            alert(
+                `Only ${availableStock} item(s) available in stock.`
+            );
+
+            return;
+        }
 
         if (existingItem) {
+
             existingItem.quantity++;
+
+            // Keep the latest product stock in the cart.
+
+            existingItem.stock = availableStock;
+
         } else {
+
             cart.push({
                 id: product.id,
                 name: product.name,
@@ -213,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 price: product.price,
                 category: product.category,
                 image: product.image,
+                stock: availableStock,
                 quantity: 1
             });
         }
@@ -233,7 +282,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1400);
         }
     }
-
 
     // ==========================================
     // FILTER PRODUCTS
@@ -263,7 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // ==========================================
     // DISPLAY PRODUCTS
     // ==========================================
@@ -289,7 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
             startIndex + PRODUCTS_PER_PAGE
         );
 
-
         if (visibleProducts.length === 0) {
 
             productList.innerHTML = `
@@ -309,8 +355,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         productList.innerHTML = visibleProducts.map(product => {
+
+            const outOfStock = isOutOfStock(product);
 
             return `
                 <article class="product-card">
@@ -339,6 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             ${product.description}
                         </p>
 
+                        ${getStockLabel(product)}
+
                         <div class="product-bottom">
 
                             <strong>${formatPrice(product.price)}</strong>
@@ -347,8 +396,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                 type="button"
                                 class="add-to-cart"
                                 data-product-id="${product.id}"
+                                ${outOfStock ? "disabled" : ""}
                             >
-                                ADD TO BAG +
+                                ${outOfStock ? "OUT OF STOCK" : "ADD TO BAG +"}
                             </button>
 
                         </div>
@@ -360,10 +410,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }).join("");
 
-
         displayPagination(totalPages);
     }
-
 
     // ==========================================
     // PAGINATION
@@ -398,7 +446,6 @@ document.addEventListener("DOMContentLoaded", () => {
         pagination.innerHTML = buttons;
     }
 
-
     // ==========================================
     // FEATURED PRODUCT CAROUSEL
     // ==========================================
@@ -420,6 +467,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const product = featuredProducts[featuredIndex];
 
+        const outOfStock = isOutOfStock(product);
+
         featuredTrack.innerHTML = `
             <article class="featured-slide">
 
@@ -440,21 +489,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <p>${product.description}</p>
 
+                    ${getStockLabel(product)}
+
                     <strong>${formatPrice(product.price)}</strong>
 
                     <button
                         type="button"
                         class="add-to-cart featured-add"
                         data-product-id="${product.id}"
+                        ${outOfStock ? "disabled" : ""}
                     >
-                        ADD TO BAG +
+                        ${outOfStock ? "OUT OF STOCK" : "ADD TO BAG +"}
                     </button>
 
                 </div>
 
             </article>
         `;
-
 
         if (carouselIndicators) {
 
@@ -474,7 +525,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     function changeFeatured(direction) {
 
         if (featuredProducts.length === 0) return;
@@ -486,20 +536,17 @@ document.addEventListener("DOMContentLoaded", () => {
         displayFeatured();
     }
 
-
     if (featuredPrev) {
         featuredPrev.addEventListener("click", () => {
             changeFeatured(-1);
         });
     }
 
-
     if (featuredNext) {
         featuredNext.addEventListener("click", () => {
             changeFeatured(1);
         });
     }
-
 
     if (carouselIndicators) {
 
@@ -515,7 +562,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // Automatically change featured product every 5 seconds.
 
     function startCarousel() {
@@ -529,7 +575,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
-
     const featuredSection = document.getElementById("featured");
 
     if (featuredSection) {
@@ -540,7 +585,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         featuredSection.addEventListener("mouseleave", startCarousel);
     }
-
 
     // ==========================================
     // CATEGORY FILTER
@@ -570,7 +614,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
     if (categoryFilter) {
 
         categoryFilter.addEventListener("change", () => {
@@ -581,7 +624,6 @@ document.addEventListener("DOMContentLoaded", () => {
             displayProducts();
         });
     }
-
 
     // ==========================================
     // FANDOM FILTER
@@ -613,7 +655,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
     // ==========================================
     // SEARCH
     // ==========================================
@@ -627,7 +668,6 @@ document.addEventListener("DOMContentLoaded", () => {
         displayProducts();
     }
 
-
     if (searchInput) {
 
         searchInput.addEventListener("input", performSearch);
@@ -640,12 +680,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     if (searchButton) {
-
         searchButton.addEventListener("click", performSearch);
     }
-
 
     // ==========================================
     // PRODUCT AND PAGINATION BUTTONS
@@ -657,12 +694,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (addButton) {
 
+            // Disabled buttons cannot add products.
+
+            if (addButton.disabled) return;
+
             addToCart(
                 addButton.dataset.productId,
                 addButton
             );
         }
-
 
         const pageButton = event.target.closest("[data-page]");
 
@@ -676,7 +716,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 behavior: "smooth"
             });
         }
-
 
         if (event.target.closest("#clear-filters")) {
 
@@ -701,7 +740,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
     // ==========================================
     // LOAD PRODUCTS FROM FIRESTORE
     // ==========================================
@@ -717,6 +755,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const data = documentSnapshot.data();
 
+                const stock = Number(data.stock);
+
                 return {
                     ...data,
 
@@ -730,33 +770,55 @@ document.addEventListener("DOMContentLoaded", () => {
                     category: data.category || "",
                     fandom: data.fandom || "",
                     image: data.image || "",
-                    featured: data.featured === true
+                    featured: data.featured === true,
+
+                    // Missing or invalid stock is treated as zero.
+
+                    stock:
+                        Number.isInteger(stock) && stock >= 0
+                            ? stock
+                            : 0
                 };
 
             }).sort((a, b) => a.id - b.id);
 
-
-            // Update the featured products.
+            // Update featured products.
 
             featuredProducts = products.filter(
                 product => product.featured
             );
 
-
-            // Keep the carousel index valid after updates.
+            // Keep carousel index valid after updates.
 
             if (featuredIndex >= featuredProducts.length) {
                 featuredIndex = 0;
             }
 
+            // Refresh cart stock information from Firestore.
 
-            // Display the latest Firestore products.
+            cart = cart.map(item => {
+
+                const latestProduct = getProduct(item.id);
+
+                if (!latestProduct) {
+                    return item;
+                }
+
+                return {
+                    ...item,
+                    stock: latestProduct.stock
+                };
+            });
+
+            saveCart();
+            updateCartCount();
+
+            // Display latest products.
 
             displayProducts();
             displayFeatured();
 
             startCarousel();
-
 
             console.log(
                 `Successfully loaded ${products.length} products from Firestore.`
@@ -789,7 +851,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     );
-
 
     // ==========================================
     // INITIALIZE WEBSITE

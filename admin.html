@@ -45,8 +45,13 @@
                 </a>
 
                 <a href="#inventory" class="studio-nav-link">
-                    <span>▤</span>
+                    <span>◇</span>
                     Inventory
+                </a>
+
+                <a href="#orders" class="studio-nav-link">
+                    <span>♡</span>
+                    Order Management
                 </a>
 
                 <a href="index.html" class="studio-nav-link">
@@ -134,7 +139,7 @@
 
                 </section>
 
-                <!-- STATISTICS -->
+                <!-- PRODUCT STATISTICS -->
                 <section class="studio-overview-section">
 
                     <div class="studio-section-heading">
@@ -261,7 +266,6 @@
                                             required>
                                     </div>
 
-                                    <!-- NEW STOCK FIELD -->
                                     <div class="admin-form-group">
                                         <label for="product-stock">STOCK QUANTITY *</label>
 
@@ -479,6 +483,174 @@
                         </table>
 
                     </div>
+
+                </section>
+
+                <!-- ORDERS DASHBOARD -->
+                <section id="orders" class="admin-orders-section">
+
+                    <div class="admin-section-heading orders-heading">
+
+                        <div>
+                            <p class="admin-eyebrow">CUSTOMER COLLECTION</p>
+                            <h2>Order Management</h2>
+                            <p class="section-subtitle">
+                                Every order, every detail, beautifully organised.
+                            </p>
+                        </div>
+
+                        <span id="order-count-label" class="product-count-label">
+                            0 orders
+                        </span>
+
+                    </div>
+
+                    <!-- ORDER STATISTICS -->
+                    <div class="admin-stats orders-stats">
+
+                        <article class="admin-stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon">◇</span>
+                                <span class="stat-caption">ALL ORDERS</span>
+                            </div>
+                            <span class="stat-label">Total Orders</span>
+                            <strong id="total-orders">0</strong>
+                            <span class="stat-note">Orders received</span>
+                        </article>
+
+                        <article class="admin-stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon">◷</span>
+                                <span class="stat-caption">NEW</span>
+                            </div>
+                            <span class="stat-label">Placed</span>
+                            <strong id="placed-orders">0</strong>
+                            <span class="stat-note">Awaiting processing</span>
+                        </article>
+
+                        <article class="admin-stat-card featured-stat">
+                            <div class="stat-top">
+                                <span class="stat-icon">✧</span>
+                                <span class="stat-caption">IN PROGRESS</span>
+                            </div>
+                            <span class="stat-label">Processing</span>
+                            <strong id="processing-orders">0</strong>
+                            <span class="stat-note">Being prepared or shipped</span>
+                        </article>
+
+                        <article class="admin-stat-card">
+                            <div class="stat-top">
+                                <span class="stat-icon">♡</span>
+                                <span class="stat-caption">COMPLETED</span>
+                            </div>
+                            <span class="stat-label">Delivered</span>
+                            <strong id="delivered-orders">0</strong>
+                            <span class="stat-note">Successfully delivered</span>
+                        </article>
+
+                    </div>
+
+                    <!-- ORDER SEARCH AND FILTERS -->
+                    <div class="orders-toolbar">
+
+                        <div class="orders-search">
+                            <label for="order-search">SEARCH ORDERS</label>
+                            <input
+                                type="search"
+                                id="order-search"
+                                placeholder="Order ID, customer name or email..."
+                            >
+                        </div>
+
+                        <div class="orders-filter">
+                            <label for="order-status-filter">ORDER STATUS</label>
+                            <select id="order-status-filter">
+                                <option value="all">All Orders</option>
+                                <option value="placed">Placed</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+
+                        <div class="orders-filter">
+                            <label for="order-payment-filter">PAYMENT</label>
+                            <select id="order-payment-filter">
+                                <option value="all">All Payments</option>
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                        </div>
+
+                        <button type="button"
+                            id="refresh-orders-button"
+                            class="admin-secondary-button">
+                            ↻ REFRESH
+                        </button>
+
+                    </div>
+
+                    <!-- ORDERS TABLE -->
+                    <div class="admin-table-wrapper orders-table-wrapper">
+
+                        <table class="admin-products-table orders-table">
+
+                            <thead>
+                                <tr>
+                                    <th>ORDER ID</th>
+                                    <th>CUSTOMER</th>
+                                    <th>EMAIL</th>
+                                    <th>DATE</th>
+                                    <th>ITEMS</th>
+                                    <th>TOTAL</th>
+                                    <th>PAYMENT</th>
+                                    <th>STATUS</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="admin-order-list">
+
+                                <tr>
+                                    <td colspan="8" class="admin-table-empty">
+                                        Loading orders...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- ORDER DETAILS -->
+                    <section id="order-details-section"
+                        class="order-details-section"
+                        hidden>
+
+                        <div class="admin-section-heading">
+
+                            <div>
+                                <p class="admin-eyebrow">CUSTOMER INFORMATION</p>
+                                <h2>Order Details</h2>
+                                <p class="section-subtitle">
+                                    Review the order and manage its fulfilment.
+                                </p>
+                            </div>
+
+                            <button type="button"
+                                id="close-order-details"
+                                class="admin-close-button"
+                                aria-label="Close order details">
+                                ×
+                            </button>
+
+                        </div>
+
+                        <div id="order-details-content"></div>
+
+                    </section>
 
                 </section>
 

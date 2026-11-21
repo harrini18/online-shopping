@@ -3016,3 +3016,55 @@ html[data-theme="dark"] .product-stock-status.out-of-stock {
     color: #f0a5ae;
     background: #48252e;
 }
+
+
+/* ==========================================
+   SHOPPING BAG STOCK AVAILABILITY
+========================================== */
+
+.cart-stock-status {
+    margin: 9px 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.cart-stock-status.in-stock {
+    color: #34734d;
+}
+
+.cart-stock-status.out-of-stock {
+    color: #a33c4b;
+}
+
+.quantity-controls button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.cart-item-unavailable {
+    opacity: 0.85;
+}
+
+.checkout-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.cart-inventory-warning {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    color: #a33c4b;
+    background: #f8e4e7;
+    font-size: 13px;
+}
+
+html[data-theme="dark"] .cart-stock-status.in-stock {
+    color: #a9e0b9;
+}
+
+html[data-theme="dark"] .cart-stock-status.out-of-stock {
+    color: #f0a5ae;
+}

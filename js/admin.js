@@ -1298,3 +1298,38 @@ logoutButton?.addEventListener("click", async () => {
 });
 
 console.log("THE DRESSUP SOCIETY Admin JS initialized.");
+
+// ==========================================
+// SIDEBAR NAVIGATION — ACTIVE INDICATOR
+// ==========================================
+
+const studioNavLinks = document.querySelectorAll(".studio-nav-link");
+
+function updateActiveNavigation(activeLink) {
+    studioNavLinks.forEach(link => {
+        link.classList.remove("active");
+        link.removeAttribute("aria-current");
+    });
+
+    activeLink.classList.add("active");
+    activeLink.setAttribute("aria-current", "page");
+}
+
+studioNavLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        updateActiveNavigation(link);
+    });
+});
+
+// Set the correct active link when the page loads
+const currentHash = window.location.hash;
+
+if (currentHash) {
+    const matchingLink = document.querySelector(
+        `.studio-nav-link[href="${currentHash}"]`
+    );
+
+    if (matchingLink) {
+        updateActiveNavigation(matchingLink);
+    }
+}

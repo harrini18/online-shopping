@@ -1,4 +1,3 @@
-
 /* =========================================
    THE DRESSUP SOCIETY
    DESIGNER'S STUDIO — CHERRY EDITION
@@ -68,27 +67,24 @@ html {
     position: fixed;
     inset: 0 auto 0 0;
     z-index: 100;
-
     width: 255px;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 0;
     padding: 36px 25px 25px;
-
     display: flex;
     flex-direction: column;
-
+    overflow-y: auto;
+    overflow-x: hidden;
     background: var(--studio-sidebar);
     border-right: 1px solid var(--studio-line);
-
     transition: background 250ms ease;
 }
 
 .studio-main {
     min-height: 100vh;
     margin-left: 255px;
-
     display: flex;
     flex-direction: column;
-
     background: var(--paper);
 }
 
@@ -108,7 +104,6 @@ html {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     color: var(--cherry);
     font-family: var(--heading-font);
     font-size: 24px;
@@ -124,7 +119,6 @@ html {
 .studio-logo small {
     width: 100%;
     margin-top: 7px;
-
     color: var(--crimson);
     font-family: var(--body-font);
     font-size: 9px;
@@ -141,7 +135,6 @@ html {
 
 .sidebar-label {
     margin-bottom: 17px;
-
     color: var(--muted);
     font-size: 9px;
     font-weight: 700;
@@ -161,18 +154,14 @@ html {
 .studio-nav-link {
     min-height: 46px;
     padding: 0 13px;
-
     display: flex;
     align-items: center;
     gap: 13px;
-
     border: 1px solid transparent;
     border-radius: 4px;
-
     color: var(--muted);
     font-size: 12px;
     font-weight: 600;
-
     transition: all 220ms ease;
 }
 
@@ -210,7 +199,6 @@ html {
 .sidebar-brand-note {
     padding: 19px 14px;
     margin-bottom: 20px;
-
     border-top: 1px solid var(--studio-line);
     border-bottom: 1px solid var(--studio-line);
 }
@@ -222,7 +210,6 @@ html {
 
 .sidebar-brand-note p {
     margin-top: 9px;
-
     color: var(--muted);
     font-family: var(--heading-font);
     font-size: 14px;
@@ -234,22 +221,17 @@ html {
     width: 100%;
     min-height: 44px;
     padding: 10px 13px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-
     border: 1px solid var(--studio-line);
     border-radius: 3px;
-
     background: transparent;
     color: var(--cherry);
-
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.3px;
-
     transition: all 250ms ease;
 }
 
@@ -267,18 +249,14 @@ html {
     position: sticky;
     top: 0;
     z-index: 50;
-
     min-height: 88px;
     padding: 15px 5.5%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-
     background: var(--header-bg);
     border-bottom: 1px solid var(--border);
-
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
@@ -294,7 +272,6 @@ html {
 .topbar-subtitle {
     display: block;
     margin-top: 5px;
-
     color: var(--muted);
     font-size: 9px;
     font-weight: 700;
@@ -311,7 +288,6 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-
     color: var(--muted);
     font-size: 9px;
     font-weight: 700;
@@ -321,7 +297,6 @@ html {
 .status-dot {
     width: 7px;
     height: 7px;
-
     border-radius: 50%;
     background: #65a77b;
     box-shadow: 0 0 0 4px rgba(101, 167, 123, 0.12);
@@ -330,19 +305,14 @@ html {
 .theme-toggle {
     width: 42px;
     height: 42px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--border);
     border-radius: 50%;
-
     background: var(--surface);
     color: var(--cherry);
-
     font-size: 20px;
-
     transition: all 250ms ease;
 }
 
@@ -358,19 +328,14 @@ html {
 
 .studio-welcome {
     position: relative;
-
     min-height: 490px;
     margin-bottom: 68px;
     padding: 55px 6%;
-
     display: flex;
     align-items: center;
-
     overflow: hidden;
     isolation: isolate;
-
     background-color: #32101f;
-
     background-image:
         linear-gradient(
             90deg,
@@ -380,14 +345,11 @@ html {
             rgba(43, 23, 34, 0.08) 100%
         ),
         url("../images/studio-woman.png");
-
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
-
     border: 1px solid rgba(217, 130, 145, 0.35);
     border-radius: 8px;
-
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
 }
 
@@ -396,10 +358,8 @@ html {
     position: absolute;
     inset: 9px;
     z-index: -1;
-
     border: 1px solid rgba(242, 190, 200, 0.16);
     border-radius: 5px;
-
     pointer-events: none;
 }
 
@@ -408,21 +368,17 @@ html {
     position: absolute;
     top: 20px;
     left: 25px;
-
     color: #e99aaa;
     font-size: 27px;
     opacity: 0.75;
-
     pointer-events: none;
 }
 
 .welcome-copy {
     position: relative;
     z-index: 2;
-
     width: 60%;
     max-width: 570px;
-
     align-self: center;
 }
 
@@ -430,9 +386,7 @@ html {
     display: flex;
     align-items: center;
     gap: 12px;
-
     margin: 0 0 28px;
-
     color: #f0a8b7;
     font-size: 9px;
     font-weight: 700;
@@ -443,14 +397,12 @@ html {
     width: 30px;
     height: 1px;
     flex-shrink: 0;
-
     background: #e98fa2;
 }
 
 .studio-welcome h1 {
     max-width: 600px;
     margin: 0 0 22px;
-
     color: #fff1f2;
     font-family: var(--heading-font);
     font-size: clamp(43px, 5vw, 65px);
@@ -460,7 +412,6 @@ html {
 
 .studio-welcome h1 em {
     display: block;
-
     color: #e58a9e;
     font-weight: 500;
 }
@@ -468,7 +419,6 @@ html {
 .studio-welcome .welcome-copy > p:not(.admin-eyebrow) {
     max-width: 470px;
     margin: 0 0 30px;
-
     color: #e0cbd1;
     font-size: 14px;
     line-height: 1.9;
@@ -477,11 +427,9 @@ html {
 .studio-welcome .admin-primary-button {
     min-height: 54px;
     padding: 15px 27px;
-
     background: #9b354e;
     border: 1px solid #c65c74;
     color: #ffffff;
-
     font-size: 11px;
     letter-spacing: 1.3px;
 }
@@ -490,7 +438,6 @@ html {
     background: #bd506a;
     border-color: #e58a9e;
     transform: translateY(-3px);
-
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
@@ -500,7 +447,6 @@ html {
 
 .studio-section-heading {
     margin-bottom: 25px;
-
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -514,7 +460,6 @@ html {
 .studio-section-heading h2,
 .admin-section-heading h2 {
     margin: 0;
-
     color: var(--ink);
     font-family: var(--heading-font);
     font-size: 31px;
@@ -524,7 +469,6 @@ html {
 
 .overview-date {
     padding-bottom: 5px;
-
     color: var(--muted);
     font-size: 9px;
     font-weight: 700;
@@ -539,22 +483,18 @@ html {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 19px;
-
     margin-bottom: 40px;
 }
 
 .admin-stat-card {
     min-height: 175px;
     padding: 23px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-
     transition: all 250ms ease;
 }
 
@@ -570,7 +510,6 @@ html {
 .stat-top {
     width: 100%;
     margin-bottom: 20px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -596,7 +535,6 @@ html {
 
 .admin-stat-card strong {
     margin-top: 3px;
-
     color: var(--cherry);
     font-family: var(--heading-font);
     font-size: 38px;
@@ -606,7 +544,6 @@ html {
 
 .stat-note {
     margin-top: 7px;
-
     color: var(--muted);
     font-size: 10px;
 }
@@ -617,16 +554,12 @@ html {
 
 .admin-message {
     display: none;
-
     margin: 0 0 25px;
     padding: 14px 18px;
-
     border: 1px solid var(--border);
     border-radius: 4px;
-
     background: var(--surface);
     color: var(--ink);
-
     font-size: 12px;
     line-height: 1.6;
 }
@@ -654,7 +587,6 @@ html {
     grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.8fr);
     align-items: stretch;
     gap: 25px;
-
     margin: 45px 0 70px;
 }
 
@@ -670,12 +602,10 @@ html {
     min-height: 390px;
     height: 100%;
     padding: 42px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid var(--rose);
@@ -684,7 +614,6 @@ html {
 
 .empty-workspace-icon {
     margin-bottom: 22px;
-
     color: var(--rose);
     font-size: 36px;
 }
@@ -696,7 +625,6 @@ html {
 .studio-empty-workspace h2 {
     max-width: 450px;
     margin: 0 0 15px;
-
     color: var(--ink);
     font-family: var(--heading-font);
     font-size: 34px;
@@ -712,7 +640,6 @@ html {
 .studio-empty-workspace > p:not(.admin-eyebrow) {
     max-width: 460px;
     margin-bottom: 24px;
-
     color: var(--muted);
     font-size: 12px;
     line-height: 1.9;
@@ -724,12 +651,9 @@ html {
 
 .studio-side-panel {
     position: relative;
-
     min-width: 0;
     padding: 25px 27px;
-
     overflow: hidden;
-
     background: var(--studio-sidebar);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -739,7 +663,6 @@ html {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-
     color: var(--muted);
     font-size: 8px;
     font-weight: 700;
@@ -752,10 +675,8 @@ html {
 
 .side-panel-art {
     position: relative;
-
     height: 150px;
     margin: 15px 0 22px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -763,10 +684,8 @@ html {
 
 .side-panel-ring {
     position: absolute;
-
     width: 125px;
     height: 125px;
-
     border: 1px solid rgba(118, 38, 56, 0.3);
     border-radius: 50%;
 }
@@ -775,7 +694,6 @@ html {
 .side-panel-ring::after {
     position: absolute;
     content: "";
-
     border: 1px solid rgba(118, 38, 56, 0.2);
     border-radius: 50%;
 }
@@ -791,7 +709,6 @@ html {
 .side-panel-art > span {
     position: relative;
     z-index: 1;
-
     color: var(--crimson);
     font-size: 44px;
 }
@@ -802,7 +719,6 @@ html {
 
 .studio-side-panel h2 {
     margin: 0 0 13px;
-
     color: var(--ink);
     font-family: var(--heading-font);
     font-size: 25px;
@@ -832,7 +748,6 @@ html {
     display: flex;
     align-items: flex-start;
     gap: 13px;
-
     margin-bottom: 17px;
 }
 
@@ -859,20 +774,16 @@ html {
 .admin-form-section {
     margin-bottom: 0;
     padding: 30px;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-top: 3px solid var(--cherry);
     border-radius: 4px;
-
     box-shadow: 0 12px 30px var(--theme-shadow);
-
     animation: adminFadeUp 350ms ease both;
 }
 
 .admin-section-heading {
     margin-bottom: 25px;
-
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -889,7 +800,6 @@ html {
 
 .section-subtitle {
     margin-top: 8px;
-
     color: var(--muted);
     font-size: 11px;
     line-height: 1.7;
@@ -899,19 +809,14 @@ html {
     width: 37px;
     height: 37px;
     flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--border);
     border-radius: 50%;
-
     background: transparent;
     color: var(--muted);
-
     font-size: 22px;
-
     transition: all 200ms ease;
 }
 
@@ -940,7 +845,6 @@ html {
 
 .admin-form-group > label {
     margin-bottom: 8px;
-
     color: var(--ink);
     font-size: 9px;
     font-weight: 700;
@@ -952,16 +856,12 @@ html {
     width: 100%;
     min-height: 45px;
     padding: 12px 13px;
-
     border: 1px solid var(--border);
     border-radius: 3px;
     outline: none;
-
     background: var(--input-bg);
     color: var(--ink);
-
     font-size: 11px;
-
     transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
@@ -987,12 +887,9 @@ html {
     display: flex;
     align-items: center;
     gap: 13px;
-
     padding: 15px;
-
     border: 1px solid var(--border);
     border-radius: 3px;
-
     background: var(--surface-alt);
     cursor: pointer;
 }
@@ -1001,7 +898,6 @@ html {
     width: 17px;
     height: 17px;
     flex-shrink: 0;
-
     accent-color: var(--cherry);
 }
 
@@ -1025,12 +921,10 @@ html {
 .admin-form-actions {
     margin-top: 25px;
     padding-top: 20px;
-
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 11px;
-
     border-top: 1px solid var(--border);
 }
 
@@ -1042,18 +936,14 @@ html {
 .admin-secondary-button {
     min-height: 45px;
     padding: 12px 20px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-
     border-radius: 3px;
-
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 1.1px;
-
     transition: all 250ms ease;
 }
 
@@ -1111,13 +1001,10 @@ html {
 
 .product-count-label {
     padding: 9px 14px;
-
     border: 1px solid var(--border);
     border-radius: 30px;
-
     background: var(--surface);
     color: var(--cherry);
-
     font-size: 10px;
     font-weight: 700;
     white-space: nowrap;
@@ -1130,21 +1017,17 @@ html {
 .admin-table-wrapper {
     width: 100%;
     overflow-x: auto;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-
     box-shadow: 0 8px 25px var(--theme-shadow);
 }
 
 .admin-products-table {
     width: 100%;
     min-width: 760px;
-
     border-collapse: collapse;
     border-spacing: 0;
-
     text-align: left;
 }
 
@@ -1154,23 +1037,19 @@ html {
 
 .admin-products-table th {
     padding: 16px 17px;
-
     color: var(--cherry);
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 1.1px;
     white-space: nowrap;
-
     border-bottom: 1px solid var(--border);
 }
 
 .admin-products-table td {
     padding: 15px 17px;
-
     color: var(--ink);
     font-size: 11px;
     vertical-align: middle;
-
     border-bottom: 1px solid var(--border);
 }
 
@@ -1195,7 +1074,6 @@ html {
 .admin-product-name {
     min-width: 150px;
     max-width: 240px;
-
     color: var(--ink);
     font-family: var(--heading-font);
     font-size: 13px;
@@ -1206,14 +1084,10 @@ html {
 .product-featured-status {
     display: inline-flex;
     align-items: center;
-
     padding: 6px 10px;
-
     border-radius: 20px;
-
     background: var(--soft-pink);
     color: var(--cherry);
-
     font-size: 9px;
     font-weight: 700;
     white-space: nowrap;
@@ -1229,16 +1103,12 @@ html {
 .delete-product-button {
     min-height: 31px;
     padding: 7px 10px;
-
     border: 1px solid var(--border);
     border-radius: 3px;
-
     background: transparent;
-
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.5px;
-
     transition: all 200ms ease;
 }
 
@@ -1269,12 +1139,10 @@ html {
 .admin-bottom-note {
     margin-top: 75px;
     padding: 27px 15px;
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 17px;
-
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -1300,13 +1168,11 @@ html {
     min-height: 95px;
     margin-top: auto;
     padding: 25px 20px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
-
     background: var(--dark);
     color: #ffffff;
     text-align: center;
@@ -1334,7 +1200,6 @@ html[data-theme="dark"] .admin-page {
     --studio-card: #21181e;
     --studio-panel: #2b2027;
     --studio-line: #49323b;
-
     background: var(--paper);
     color: var(--ink);
 }
@@ -1541,9 +1406,7 @@ html[data-theme="dark"] .admin-footer {
 @media (max-width: 900px) {
     .studio-welcome {
         min-height: 440px;
-
         background-position: 65% center;
-
         background-image:
             linear-gradient(
                 90deg,
@@ -1564,16 +1427,13 @@ html[data-theme="dark"] .admin-footer {
     .studio-sidebar {
         position: relative;
         inset: auto;
-
         width: 100%;
         min-height: auto;
         padding: 18px 5%;
-
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
         gap: 16px;
-
         border-right: none;
         border-bottom: 1px solid var(--border);
     }
@@ -1713,15 +1573,11 @@ html[data-theme="dark"] .admin-footer {
     .studio-welcome {
         min-height: 460px;
         padding: 35px 23px;
-
         display: flex;
         align-items: center;
-
         margin-bottom: 45px;
-
         background-position: 67% center;
         background-size: cover;
-
         background-image:
             linear-gradient(
                 90deg,
@@ -1867,7 +1723,6 @@ html[data-theme="dark"] .admin-footer {
     .studio-welcome {
         min-height: 430px;
         padding-inline: 19px;
-
         background-position: 65% center;
     }
 
@@ -2012,13 +1867,10 @@ html[data-theme="dark"] .stock-status.out-of-stock {
         minmax(145px, 1fr)
         minmax(135px, 0.9fr)
         auto;
-
     align-items: end;
     gap: 14px;
-
     margin-bottom: 22px;
     padding: 20px;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -2046,17 +1898,13 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     min-width: 0;
     height: 44px;
     padding: 0 12px;
-
     border: 1px solid var(--border);
     border-radius: 3px;
     outline: none;
-
     background: var(--input-bg);
     color: var(--ink);
-
     font-family: var(--body-font);
     font-size: 11px;
-
     transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
@@ -2088,11 +1936,9 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     width: 100%;
     margin-bottom: 30px;
     overflow-x: auto;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-
     box-shadow: 0 8px 25px var(--theme-shadow);
 }
 
@@ -2110,23 +1956,19 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 
 .orders-table th {
     padding: 17px 14px;
-
     color: var(--cherry);
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 1.1px;
     white-space: nowrap;
-
     border-bottom: 1px solid var(--border);
 }
 
 .orders-table td {
     padding: 17px 14px;
-
     color: var(--ink);
     font-size: 10px;
     vertical-align: middle;
-
     border-bottom: 1px solid var(--border);
 }
 
@@ -2170,6 +2012,14 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     overflow-wrap: anywhere;
 }
 
+/* Separate email column */
+
+.order-email-cell {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
 /* Date */
 
 .order-date {
@@ -2206,12 +2056,9 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-height: 27px;
     padding: 6px 10px;
-
     border-radius: 30px;
-
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.6px;
@@ -2269,17 +2116,13 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 .order-action-button {
     min-height: 34px;
     padding: 8px 12px;
-
     border: 1px solid var(--border);
     border-radius: 3px;
-
     background: transparent;
     color: var(--cherry);
-
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.7px;
-
     transition: all 200ms ease;
 }
 
@@ -2310,14 +2153,11 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 .order-details-section {
     margin-top: 35px;
     padding: 30px;
-
     background: var(--surface);
     border: 1px solid var(--border);
     border-top: 3px solid var(--cherry);
     border-radius: 4px;
-
     box-shadow: 0 12px 30px var(--theme-shadow);
-
     animation: adminFadeUp 350ms ease both;
 }
 
@@ -2337,7 +2177,6 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 .order-detail-card {
     min-width: 0;
     padding: 20px;
-
     background: var(--surface-alt);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -2345,7 +2184,6 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 
 .order-detail-card h3 {
     margin: 0 0 15px;
-
     color: var(--cherry);
     font-family: var(--heading-font);
     font-size: 19px;
@@ -2357,7 +2195,6 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     justify-content: space-between;
     align-items: flex-start;
     gap: 15px;
-
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
 }
@@ -2392,7 +2229,6 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 
 .order-items-heading {
     margin: 30px 0 15px;
-
     color: var(--ink);
     font-family: var(--heading-font);
     font-size: 22px;
@@ -2408,7 +2244,6 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 .order-items-table th {
     padding: 13px;
     background: var(--soft-pink);
-
     color: var(--cherry);
     font-size: 9px;
     letter-spacing: 0.8px;
@@ -2417,10 +2252,8 @@ html[data-theme="dark"] .stock-status.out-of-stock {
 
 .order-items-table td {
     padding: 13px;
-
     color: var(--ink);
     font-size: 10px;
-
     border-bottom: 1px solid var(--border);
 }
 
@@ -2453,10 +2286,8 @@ html[data-theme="dark"] .stock-status.out-of-stock {
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 14px;
-
     margin-top: 28px;
     padding-top: 22px;
-
     border-top: 1px solid var(--border);
 }
 
@@ -2696,8 +2527,4 @@ html[data-theme="dark"] .order-action-button.cancel-order-button:hover {
         padding: 15px;
     }
 }
-.order-email-cell {
-    font-size: 12px;
-    color: var(--text-secondary);
-    white-space: nowrap;
-}
+
